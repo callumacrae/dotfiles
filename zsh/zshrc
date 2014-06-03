@@ -1,0 +1,4 @@
+source ~/.dotfiles/zsh/node.zshrc
+source ~/.dotfiles/zsh/git.zshrc
+source ~/.dotfiles/zsh/loadstuff.zshrc
+source ~/.dotfiles/zsh/aliases.zshrc
