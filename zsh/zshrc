@@ -1,4 +1,9 @@
-source ~/.dotfiles/zsh/node.zshrc
-source ~/.dotfiles/zsh/git.zshrc
-source ~/.dotfiles/zsh/loadstuff.zshrc
-source ~/.dotfiles/zsh/aliases.zshrc
+# Source all *.zsh files in this dir
+for file in ~/.dotfiles/zsh/*.zshrc
+	do source $file
+done
+
+# For super secret stuff
+if [[ -a ~/.localrc ]] then
+	source ~/.localrc
+fi

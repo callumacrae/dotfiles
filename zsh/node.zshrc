@@ -1,6 +1,7 @@
 # Add npm global install path to $PATH
 export PATH=$HOME/.npm/bin:/usr/local/bin:$PATH
 
+# Load nvm, use default node
 source $(brew --prefix nvm)/nvm.sh
 export NVM_DIR=~/.nvm
 nvm use default
