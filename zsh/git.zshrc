@@ -1,4 +1,4 @@
-alias git=hub
+[ -x "$(which hub)" ] && alias git=hub
 #zstyle ':completion:*:*:git:*' script ~/.git-completion.sh
 #fpath=(~/.zsh $fpath) # Doesn't work :(
 
