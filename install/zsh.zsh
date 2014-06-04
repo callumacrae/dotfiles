@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Only define if not already defined
-$DOTFILES && export DOTFILES="$HOME/.dotfiles"
+[[ -z $DOTFILES ]] && export DOTFILES="$HOME/.dotfiles"
 
 
 # Install prezto
@@ -25,4 +25,4 @@ mv pure.zsh ~/.zprezto/modules/prompt/functions/prompt_pure_setup
 ln -s "$DOTFILES/zsh/zshrc" ~/.zshrc
 
 [ -f ~/.zpreztorc ] && mv ~/.zpreztorc ~/.zpreztorc_old
-ln -s ~/.dotfiles/zsh/zpreztorc ~/.zpreztorc
+ln -s "$DOTFILES/zsh/zpreztorc" ~/.zpreztorc
