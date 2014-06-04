@@ -10,11 +10,11 @@ Installs:
 - [Prezto](https://github.com/sorin-ionescu/prezto)
 - [Pure](https://github.com/sindresorhus/pure)
 - Vim
+- Node.js and npm, along with some global modules I use
+- Some small miscellaneous stuff
 
 Will install:
 
-- Node.js and npm
-- bower, gulp, grunt, yeoman, david, trash
 - irssi
 
 - Optionally will install PhpStorm and other graphical applications such as Virtualbox and Vagrant
