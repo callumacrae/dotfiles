@@ -31,3 +31,8 @@ chmod +x install.sh
 ```
 
 Might not work on your machine.
+
+## Vagrant
+
+Includes a Vagrantfile for testing. Run `vagrant up`, and then change directory
+to `/vagrant` and follow the steps above.
