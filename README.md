@@ -25,7 +25,7 @@ Will install:
 To set stuff up automatically, do this:
 
 ```
-cd install
+cd ~/.dotfiles/install
 chmod +x install.sh
 ./install.sh
 ```
@@ -34,5 +34,5 @@ Might not work on your machine.
 
 ## Vagrant
 
-Includes a Vagrantfile for testing. Run `vagrant up`, and then change directory
-to `/vagrant` and follow the steps above.
+Includes a Vagrantfile for testing. Run `vagrant up`, and then follow the steps
+above to test shit.
