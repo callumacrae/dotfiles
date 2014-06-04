@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 [ -x "$(which apt-get)" ] && sudo apt-get update
 

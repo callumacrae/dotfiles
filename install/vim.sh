@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Only define if not already defined
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/.dotfiles"
