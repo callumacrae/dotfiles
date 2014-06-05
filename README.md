@@ -32,6 +32,10 @@ chmod +x install.sh
 
 Might not work on your machine.
 
+## Todo
+
+irssi should load notifier, queryresume, and vim-mode.
+
 ## Vagrant
 
 Includes a Vagrantfile for testing. Run `vagrant up`, and then follow the steps
