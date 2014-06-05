@@ -19,5 +19,5 @@ elif [[ -x "$(which apt-get)" ]]; then
 fi
 
 [ -f ~/.gitignore_global ] && mv ~/.gitignore_global ~/.gitignore_global_old
-ln -s ${DOTFILES}/git/gitignore_global ~/.gitignore_global
+ln -s ${DOTFILES}/misc/gitignore_global ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global

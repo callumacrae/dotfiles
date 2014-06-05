@@ -5,5 +5,6 @@
 . ./zsh.sh
 . ./vim.sh
 . ./node.sh
+. ./misc.sh
 
 echo "Installed. Exit and come back"
