@@ -10,12 +10,9 @@ Installs:
 - [Prezto](https://github.com/sorin-ionescu/prezto)
 - [Pure](https://github.com/sindresorhus/pure)
 - Vim
-- Node.js and npm, along with some global modules I use
+- [Node.js](http://nodejs.org/) with [nvm](https://github.com/creationix/nvm), along with some global modules I use
+- [irssi](http://www.irssi.org/) with modified [weed](https://github.com/ronilaukkarinen/weed) theme and some awesome scripts
 - Some small miscellaneous stuff
-
-Will install:
-
-- irssi
 
 - Optionally will install PhpStorm and other graphical applications such as Virtualbox and Vagrant
 
@@ -25,9 +22,8 @@ Will install:
 To set stuff up automatically, do this:
 
 ```
-cd ~/.dotfiles/install
-chmod +x install.sh
-./install.sh
+git clone git@github.com:callumacrae/dotfiles.git ~/.dotfiles
+~/.dotfiles/install/install.sh
 ```
 
 Might not work on your machine.
