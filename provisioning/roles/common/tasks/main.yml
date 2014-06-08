@@ -1,0 +1,34 @@
+---
+# Install common packages
+
+- name: Update apt-get
+  apt: upgrade=dist update_cache=yes
+  when: ansible_os_family == "Debian"
+  sudo: yes
+
+- name: Install common packages (apt-get)
+  apt: name={{ item }}
+  with_items:
+    - ack-grep
+    - autojump
+    - htop
+  when: ansible_os_family == "Debian"
+  sudo: yes
+
+- name: Install brew
+  raw: ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+  register: homebrew_result
+  failed_when: "homebrew_result.rc != 0 and 'Homebrew is already installed' not in homebrew_result.stderr"
+  when: ansible_os_family == "Darwin"
+
+- name: Update brew
+  homebrew: update_homebrew=yes upgrade_all=yes
+  when: ansible_os_family == "Darwin"
+
+- name: Install common packages (brew)
+  homebrew: name={{ item }}
+  with_items:
+    - ack
+    - autojump
+    - htop
+  when: ansible_os_family == "Darwin"
