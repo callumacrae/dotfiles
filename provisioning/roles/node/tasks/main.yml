@@ -1,0 +1,33 @@
+---
+# Install node through nvm
+
+- name: Install curl (nvm dependency)
+  apt: name=curl
+  when: ansible_os_family == "Debian"
+  sudo: yes
+
+- name: Download nvm
+  git: repo=https://github.com/creationix/nvm.git
+       dest=~/.nvm
+
+- name: Install node
+  shell: source ~/.zshrc && nvm install v0.10 && nvm alias default 0.10
+         executable=/bin/zsh
+
+- name: Get global npm install path
+  shell: source ~/.zshrc >> /dev/null && npm config get prefix executable=/bin/zsh
+  register: npm_path
+
+- name: Set global npm install path if wrong
+  shell: source ~/.zshrc && npm config set prefix ~/.npm
+         executable=/bin/zsh
+  when: '".npm" not in npm_path.stdout'
+
+- name: See if npm packages already installed
+  stat: path=~/.npm/gulp
+  register: gulp_stat
+
+- name: Install npm packages # We can't use the npm module because npm isn't sourced
+  shell: source ~/.zshrc && npm install -g yo gulp david trash
+         executable=/bin/zsh
+  when: not gulp_stat.stat.exists
