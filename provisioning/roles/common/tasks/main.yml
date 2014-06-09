@@ -6,3 +6,14 @@
 
 - include: osx.yml
   when: ansible_os_family == "Darwin"
+
+- name: See if wrong .jshintrc
+  stat: path=~/.jshintrc
+  register: old_jshintrc
+
+- name: Remove old .jshintrc if necessary
+  shell: mv ~/.jshintrc ~/.jshintrc_old
+  when: 'old_jshintrc.stat.exists and ".dot" not in old_jshintrc.stat.lnk_source'
+
+- name: Link .jshintrc
+  file: src=~/.dotfiles/misc/jshintrc dest=~/.jshintrc state=link
