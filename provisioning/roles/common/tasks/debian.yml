@@ -1,0 +1,14 @@
+---
+# Install common packages using apt-get
+
+- name: Update apt-get
+  apt: upgrade=dist update_cache=yes
+  sudo: yes
+
+- name: Install common packages (apt-get)
+  apt: name={{ item }}
+  with_items:
+    - ack-grep
+    - autojump
+    - htop
+  sudo: yes

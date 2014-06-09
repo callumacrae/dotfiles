@@ -1,0 +1,17 @@
+---
+# Install brew and common packages on OS X
+
+- name: Install brew
+  raw: ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+  register: homebrew_result
+  failed_when: "homebrew_result.rc != 0 and 'Homebrew is already installed' not in homebrew_result.stderr"
+
+- name: Update brew
+  homebrew: update_homebrew=yes upgrade_all=yes
+
+- name: Install common packages (brew)
+  homebrew: name={{ item }}
+  with_items:
+    - ack
+    - autojump
+    - htop
