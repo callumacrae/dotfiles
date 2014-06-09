@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
 
 	config.vm.provision "ansible" do |ansible|
 		ansible.playbook = "provisioning/playbook.yml"
+		ansible.start_at_task = "See if wrong .irssi dir"
 	end
 
 	config.vm.provider :virtualbox do |v|
