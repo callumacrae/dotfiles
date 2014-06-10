@@ -3,8 +3,8 @@ servers = (
   {
     address = "lynx.io";
     chatnet = "freenode";
-    port = "";
-    password = "";
+    port = "55555";
+    password = "3CNLbCGdywSZHbay";
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
@@ -12,8 +12,8 @@ servers = (
   {
     address = "lynx.io";
     chatnet = "snoonet";
-    port = "";
-    password = "";
+    port = "55555";
+    password = "XMJ6hOpiA67uwTuj";
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
@@ -21,8 +21,8 @@ servers = (
   {
     address = "lynx.io";
     chatnet = "efnet";
-    port = "";
-    password = "";
+    port = "55555";
+    password = "u0Tw4sKEgnBfSyoZ";
     use_ssl = "no";
     ssl_verify = "no";
   }
