@@ -6,6 +6,6 @@
 ehthumbs.db
 Thumbs.db
 
-.dotfiles.iml
+*.iml
 .idea
 .vagrant
