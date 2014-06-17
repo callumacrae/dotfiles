@@ -1,7 +1,7 @@
 alias reload=". ~/.zshrc" # Reloads ZSH config
 alias phpstorm="open -a phpstorm ." # Opens current directory in PhpStorm
+alias intellij="open -a 'IntelliJ IDEA 13' ." # Opens current directory in idea
 [ -x "$(which ack-grep)" ] && alias ack=ack-grep # ack sometimes ack-grep
-[ ! -x "$(which j)" ] && alias j=autojump
 
 # Shut the fuck up, ZSH
 alias vim="nocorrect vim"
@@ -17,5 +17,5 @@ function starton {
 	fi
 
 	git clone $1 ~/Sites/$dir
-	open -a phpstorm $_
+	open -a 'IntelliJ IDEA 13' $_
 }
