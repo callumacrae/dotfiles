@@ -16,6 +16,6 @@ function starton {
 		dir=$dir[0,-5]
 	fi
 
-	git clone $1 ~/Sites/$dir
+	hub clone $1 ~/Sites/$dir
 	open -a 'IntelliJ IDEA 13' $_
 }
