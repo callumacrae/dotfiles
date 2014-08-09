@@ -91,6 +91,7 @@ aliases = {
   NS = "msg nickserv";
   CS = "msg chanserv";
   ucount = "run usercount.pl; sbar awl_0 add -before awl_0 -alignment left usercount";
+  shrug = "msg $C ¯\\\\_(ツ)_/¯";
 };
 
 statusbar = {
