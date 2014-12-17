@@ -1,6 +1,5 @@
 " Mostly pinched from http://amix.dk/vim/vimrc.html
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -57,3 +56,14 @@ set wrap "Wrap lines
 
 " Wrap git commit messages
 filetype indent plugin on
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+execute pathogen#infect()

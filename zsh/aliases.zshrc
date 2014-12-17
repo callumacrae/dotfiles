@@ -2,6 +2,7 @@ alias reload=". ~/.zshrc" # Reloads ZSH config
 alias phpstorm="open -a phpstorm ." # Opens current directory in PhpStorm
 alias intellij="open -a 'IntelliJ IDEA 13' ." # Opens current directory in idea
 [ -x "$(which ack-grep)" ] && alias ack=ack-grep # ack sometimes ack-grep
+alias govim="vim +"NERDTree `pwd`""
 
 # Shut the fuck up, ZSH
 alias vim="nocorrect vim"

@@ -92,6 +92,7 @@ aliases = {
   CS = "msg chanserv";
   ucount = "run usercount.pl; sbar awl_0 add -before awl_0 -alignment left usercount";
   shrug = "msg $C ¯\\\\_(ツ)_/¯";
+  disapprove = "msg $C ಠ_ಠ";
 };
 
 statusbar = {
@@ -116,7 +117,7 @@ statusbar = {
     # window_empty is printed with empty windows
 
     window = "";
-    #window_empty = "{sb %C{sbservertag $tag}}%n";   
+    #window_empty = "{sb %C{sbservertag $tag}}%n";
     window_empty = "{sb $winref/{sbservertag $tag}}";
     #prompt = "$winref%K/{prompt $[.15]itemname}";
     prompt = "";

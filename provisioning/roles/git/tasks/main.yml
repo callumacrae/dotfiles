@@ -10,6 +10,11 @@
   when: ansible_os_family == "Debian"
   sudo: yes
 
+- name: Get .git-completion.sh
+  get_url: \
+    url=https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
+    dest=~/.zsh/_git
+
 - name: Install hub dependencies
   apt: name=rake
   when: ansible_os_family == "Debian"

@@ -9,3 +9,5 @@ Thumbs.db
 *.iml
 .idea
 .vagrant
+
+.sass-cache
