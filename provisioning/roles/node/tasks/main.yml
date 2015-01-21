@@ -9,6 +9,11 @@
 - name: Download nvm
   git: repo=https://github.com/creationix/nvm.git
        dest=~/.nvm
+  when: ansible_os_family == "Debian"
+
+- name: Install nvm
+  homebrew: name=nvm
+  when: ansible_os_family == "Darwin"
 
 - name: Install node
   shell: source ~/.zshrc && nvm install v0.10 && nvm alias default 0.10

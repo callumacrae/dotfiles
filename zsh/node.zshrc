@@ -6,8 +6,6 @@ export NODE_PATH=$NODE_PATH:/Users/callumacrae/.npm/lib/node_modules
 # Load nvm
 if [[ -s "~/.nvm/nvm.sh" ]]; then
 	source "~/.nvm/nvm.sh"
-elif [[ `uname` == 'Darwin' ]]; then
-	source $(brew --prefix nvm)/nvm.sh
 fi
 
 export NVM_DIR=~/.nvm

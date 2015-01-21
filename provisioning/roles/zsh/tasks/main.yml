@@ -19,6 +19,7 @@
 
 - name: Set default shell to ZSH
   user: name={{ ansible_user_id }} shell=/bin/zsh
+  when: ansible_os_family == "Debian"
   sudo: yes
 
 - name: Download pure theme

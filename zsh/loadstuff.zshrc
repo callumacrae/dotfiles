@@ -6,9 +6,6 @@ fi
 # Mac stuff
 if [[ `uname` == 'Darwin' ]]; then
 
-	# Cheatsheet: lsvirtualenv, mkvirtualenv, workon, deactivate
-	source /usr/local/bin/virtualenvwrapper.sh
-
 	[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 elif [[ -s /usr/share/autojump/autojump.sh ]]; then
 	. /usr/share/autojump/autojump.sh

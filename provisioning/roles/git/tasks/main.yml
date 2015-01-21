@@ -10,6 +10,9 @@
   when: ansible_os_family == "Debian"
   sudo: yes
 
+- name: Create .zsh directory
+  file: path=~/.zsh state=directory
+
 - name: Get .git-completion.sh
   get_url: \
     url=https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
