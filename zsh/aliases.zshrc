@@ -1,12 +1,16 @@
 alias reload=". ~/.zshrc" # Reloads ZSH config
 alias phpstorm="open -a phpstorm ." # Opens current directory in PhpStorm
-alias intellij="open -a 'IntelliJ IDEA 13' ." # Opens current directory in idea
+alias intellij="open -a 'IntelliJ IDEA 14' ." # Opens current directory in idea
 [ -x "$(which ack-grep)" ] && alias ack=ack-grep # ack sometimes ack-grep
 alias govim="vim +"NERDTree `pwd`""
 
 # Shut the fuck up, ZSH
 alias vim="nocorrect vim"
 alias trash="nocorrect trash"
+
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; reloadFinder'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; reloadFinder'
+alias reloadFinder='killall Finder /System/Library/CoreServices/Finder.app'
 
 # Clones a project from GitHub into ~/Sites, and opens it in PhpStorm
 function starton {
