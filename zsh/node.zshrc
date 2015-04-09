@@ -11,3 +11,9 @@ fi
 export NVM_DIR=~/.nvm
 nvm use default
 source ~/.nvm/*/lib/node_modules/npm/lib/utils/completion.sh
+
+function chpwd() {
+    if [ -r $PWD/.nvmrc ]; then
+        nvm use `cat $PWD/.nvmrc`
+    fi
+}
