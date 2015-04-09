@@ -4,7 +4,7 @@ servers = (
     address = "lynx.io";
     chatnet = "freenode";
     port = "55555";
-    password = "";
+    password = "EW79o2IParslS9RI";
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
@@ -13,7 +13,7 @@ servers = (
     address = "lynx.io";
     chatnet = "snoonet";
     port = "55555";
-    password = "";
+    password = "g9hJYkyXF0y9xZig";
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
@@ -93,6 +93,8 @@ aliases = {
   ucount = "run usercount.pl; sbar awl_0 add -before awl_0 -alignment left usercount";
   shrug = "msg $C ¯\\\\_(ツ)_/¯";
   disapprove = "msg $C ಠ_ಠ";
+  do = "say `$*`; exec -o - $*";
+  partforce = "part $C force";
 };
 
 statusbar = {
