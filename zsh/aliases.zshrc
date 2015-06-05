@@ -13,6 +13,9 @@ alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; reloadFi
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; reloadFinder'
 alias reloadFinder='killall Finder /System/Library/CoreServices/Finder.app'
 
+alias fuck='$(thefuck $(fc -ln -1))'
+alias FUCK='fuck'
+
 # Clones a project from GitHub into ~/Sites, and opens it in PhpStorm
 function starton {
 	dir=${1##*/}

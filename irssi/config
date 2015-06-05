@@ -280,19 +280,10 @@ settings = {
     awl_sort = "refnum";
   };
 };
+logs = { };
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
   2 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#phpbb-chanops";
-        tag = "freenode";
-      }
-    );
-  };
-  3 = {
     items = (
       {
         type = "CHANNEL";
@@ -302,7 +293,7 @@ windows = {
       }
     );
   };
-  4 = {
+  3 = {
     items = (
       {
         type = "CHANNEL";
@@ -312,7 +303,7 @@ windows = {
       }
     );
   };
-  5 = {
+  4 = {
     items = (
       {
         type = "CHANNEL";
@@ -322,6 +313,9 @@ windows = {
       }
     );
   };
+  5 = { name = "hilight"; sticky = "yes"; };
 };
-mainwindows = { 1 = { first_line = "0"; lines = "20"; }; };
-logs = { };
+mainwindows = {
+  1 = { first_line = "3"; lines = "41"; };
+  5 = { first_line = "0"; lines = "3"; };
+};
