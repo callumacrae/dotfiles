@@ -316,6 +316,6 @@ windows = {
   5 = { name = "hilight"; sticky = "yes"; };
 };
 mainwindows = {
-  1 = { first_line = "3"; lines = "41"; };
-  5 = { first_line = "0"; lines = "3"; };
+  1 = { first_line = "5"; lines = "39"; };
+  5 = { first_line = "0"; lines = "5"; };
 };
