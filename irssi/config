@@ -1,7 +1,7 @@
 servers = (
   { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; },
   {
-    address = "lynx.io";
+    address = "23.23.245.82";
     chatnet = "freenode";
     port = "55555";
     password = "";
@@ -10,7 +10,7 @@ servers = (
     autoconnect = "yes";
   },
   {
-    address = "lynx.io";
+    address = "23.23.245.82";
     chatnet = "snoonet";
     port = "55555";
     password = "";
@@ -19,7 +19,7 @@ servers = (
     autoconnect = "yes";
   },
   {
-    address = "lynx.io";
+    address = "23.23.245.82";
     chatnet = "efnet";
     port = "55555";
     password = "";
