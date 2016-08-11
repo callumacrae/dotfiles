@@ -22,8 +22,9 @@ sudo chsh -s /bin/zsh `whoami`
 
 
 # Install pure
-wget https://raw.githubusercontent.com/sindresorhus/pure/master/pure.zsh
-mv pure.zsh ~/.zprezto/modules/prompt/functions/prompt_pure_setup
+git clone https://github.com/sindresorhus/pure.git ~/.pure
+ln -s ~/.pure/pure.zsh /usr/local/share/zsh/site-functions/prompt_pure_setup
+ln -s ~/.pure/async.zsh /usr/local/share/zsh/site-functions/async
 
 
 # Set up config files

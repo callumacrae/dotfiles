@@ -11,4 +11,3 @@ elif [[ -s /usr/share/autojump/autojump.sh ]]; then
 	. /usr/share/autojump/autojump.sh
 fi
 
-source /usr/local/share/zsh/site-functions/_aws

@@ -7,9 +7,9 @@ git clone https://github.com/creationix/nvm.git ~/.nvm
 source ~/.nvm/nvm.sh
 
 # Install Node and npm
-nvm install v0.10
-nvm alias default 0.10
+nvm install 6
+nvm alias default 6
 
 # Install common global dependencies
 npm config set prefix ~/.npm
-npm install -g yo gulp david trash # Also installs grunt and bower
+npm install -g gulp-cli david trash # Also installs grunt and bower

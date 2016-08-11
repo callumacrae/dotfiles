@@ -4,13 +4,16 @@ export PATH=$HOME/.npm/bin:/usr/local/bin:$PATH
 export NODE_PATH=$NODE_PATH:/Users/callumacrae/.npm/lib/node_modules
 
 # Load nvm
-if [[ -s "~/.nvm/nvm.sh" ]]; then
-	source "~/.nvm/nvm.sh"
-fi
+source ~/.nvm/nvm.sh
 
 export NVM_DIR=~/.nvm
 nvm use default
-source ~/.nvm/*/lib/node_modules/npm/lib/utils/completion.sh
+
+if [ ! -f ~/.npm_completion ]; then
+	npm completion > ~/.npm_completion
+fi
+
+source ~/.npm_completion
 
 function chpwd() {
     if [ -r $PWD/.nvmrc ]; then

@@ -6,8 +6,7 @@ if [[ -x `which apt-get` ]]; then
 fi
 
 if [[ `uname` == 'Darwin' ]]; then
-	ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-	brew install ack autojump htop
-	brew install caskroom/cask/brew-cask
+	brew install ack autojump htop wget
 fi
