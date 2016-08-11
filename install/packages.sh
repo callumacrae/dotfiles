@@ -8,5 +8,5 @@ fi
 if [[ `uname` == 'Darwin' ]]; then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-	brew install ack autojump htop wget
+	brew install ack autojump htop wget tree
 fi

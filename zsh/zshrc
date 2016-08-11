@@ -7,9 +7,3 @@ done
 if [[ -a ~/.localrc ]] then
 	source ~/.localrc
 fi
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-# added by travis gem
-[ -f /Users/callumacrae/.travis/travis.sh ] && source /Users/callumacrae/.travis/travis.sh
-
