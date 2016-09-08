@@ -11,5 +11,4 @@ nvm install 6
 nvm alias default 6
 
 # Install common global dependencies
-npm config set prefix ~/.npm
 npm install -g gulp-cli david trash # Also installs grunt and bower
