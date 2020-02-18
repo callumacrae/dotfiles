@@ -95,6 +95,8 @@ aliases = {
   disapprove = "msg $C ಠ_ಠ";
   do = "say `$*`; exec -o - $*";
   partforce = "part $C force";
+  vm_add = "/^statusbar prompt add -after input -alignment right vim_mode";
+  vm_del = "/^statusbar prompt remove vim_mode";
 };
 
 statusbar = {
@@ -182,14 +184,6 @@ statusbar = {
 
     # we treat input line as yet another statusbar :) It's possible to
     # add other items before or after the input line item.
-    prompt = {
-      type = "root";
-      placement = "bottom";
-      # we want to be at the bottom always
-      position = "1";
-      visible = "active";
-      items = { input = { }; };
-    };
 
     # topicbar
     topic = {
@@ -243,6 +237,14 @@ statusbar = {
     "-before" = { disabled = "yes"; };
     aw1_0 = { position = "0"; disabled = "yes"; };
     empty = { placement = "bottom"; position = "0"; disabled = "yes"; };
+    prompt = {
+      items = {
+        uberprompt = { priority = "-1"; };
+        input = { priority = "10"; };
+        vim_mode = { alignment = "right"; };
+      };
+      position = "100";
+    };
     awl_0 = {
       items = {
         barstart = { priority = "100"; };
@@ -278,6 +280,8 @@ settings = {
     awl_sbar_maxlength = "yes";
     awl_separator = "%N %N";
     awl_sort = "refnum";
+    uberprompt_load_hook = "/^vm_add";
+    uberprompt_unload_hook = "/^vm_del";
   };
 };
 logs = { };
