@@ -1,4 +1,8 @@
-" Install plugins
+source ~/.vimrc-common
+
+" IntelliJ specific stuff:
+
 set easymotion
 
-source ~/.vimrc-common
+vmap v :action EditorSelectWord<CR>
+vmap V :action EditorUnSelectWord<CR>
