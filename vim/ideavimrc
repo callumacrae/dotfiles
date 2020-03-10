@@ -3,6 +3,9 @@ source ~/.vimrc-common
 " IntelliJ specific stuff:
 
 set easymotion
+set surround
 
 vmap v :action EditorSelectWord<CR>
 vmap V :action EditorUnSelectWord<CR>
+
+nnoremap <Leader>r :action RenameElement<CR>
