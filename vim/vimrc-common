@@ -1,0 +1,26 @@
+" Insert quotes around stuff
+nnoremap <leader>" viwb<esc>i"<esc>ea"<esc>lel
+nnoremap <leader>' viwb<esc>i'<esc>ea'<esc>lel
+vnoremap <leader>" <esc>`<lt>i"<esc>`>la"<esc>
+vnoremap <leader>' <esc>`<lt>i'<esc>`>la'<esc>
+
+" \q to turn => () into => { return () }
+noremap <leader>q ca({<CR>return <esc>p
+
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+
+" Remove arrow keys lol
+nnoremap <Left> <nop>
+vnoremap <Left> <nop>
+inoremap <Left> <nop>
+nnoremap <Up> <nop>
+vnoremap <Up> <nop>
+inoremap <Up> <nop>
+nnoremap <Right> <nop>
+vnoremap <Right> <nop>
+inoremap <Right> <nop>
+nnoremap <Down> <nop>
+vnoremap <Down> <nop>
+inoremap <Down> <nop>

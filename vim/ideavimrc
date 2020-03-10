@@ -1,0 +1,4 @@
+" Install plugins
+set easymotion
+
+source ~/.vimrc-common

@@ -1,3 +1,5 @@
+source ~/.vimrc-common
+
 " Mostly pinched from http://amix.dk/vim/vimrc.html
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
