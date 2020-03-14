@@ -15,3 +15,7 @@ ln -s ${DOTFILES}/misc/BetterTouchTool ~/Library/Application\ Support/BetterTouc
 # export btt_plist="${HOME}/Library/Preferences/com.hegenberg.BetterTouchTool.plist"
 # [ -f $btt_plist ] && mv ${btt_plist}{,_old}
 # ln -s ${DOTFILES}/misc/com.hegenberg.BetterTouchTool.plist ${btt_plist}
+
+# Link Karabiner config
+[ -d ~/.config/karabiner ] && mv ~/.config/karabiner{,_old}
+ln -s ${DOTFILES}/misc/karabiner ~/.config/karabiner
