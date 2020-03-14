@@ -9,5 +9,6 @@ Thumbs.db
 *.iml
 .idea
 .vagrant
+.vscode
 
 .sass-cache
