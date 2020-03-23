@@ -1,11 +1,8 @@
-" Insert quotes around stuff
-nnoremap <leader>" viwb<esc>i"<esc>ea"<esc>lel
-nnoremap <leader>' viwb<esc>i'<esc>ea'<esc>lel
-vnoremap <leader>" <esc>`<lt>i"<esc>`>la"<esc>
-vnoremap <leader>' <esc>`<lt>i'<esc>`>la'<esc>
-
 " \q to turn => () into => { return () }
 noremap <leader>q ca({<CR>return <esc>p
+
+" \w to rename a word and make it searchable
+nnoremap <leader>w *``cgn
 
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
@@ -24,3 +21,7 @@ inoremap <Right> <nop>
 nnoremap <Down> <nop>
 vnoremap <Down> <nop>
 inoremap <Down> <nop>
+
+" Relative line numbers
+set rnu
+set nu

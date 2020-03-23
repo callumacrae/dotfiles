@@ -9,3 +9,6 @@ vmap v :action EditorSelectWord<CR>
 vmap V :action EditorUnSelectWord<CR>
 
 nnoremap <Leader>r :action RenameElement<CR>
+
+nnoremap gn :action GotoNextError<CR>
+nnoremap gp :action GotoPreviousError<CR>
