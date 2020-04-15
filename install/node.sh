@@ -7,8 +7,7 @@ git clone https://github.com/creationix/nvm.git ~/.nvm
 source ~/.nvm/nvm.sh
 
 # Install Node and npm
-nvm install 6
-nvm alias default 6
+nvm install --lts
+nvm alias default stable
 
-# Install common global dependencies
-npm install -g gulp-cli david trash # Also installs grunt and bower
+npm install -g yarn

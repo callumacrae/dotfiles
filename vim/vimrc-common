@@ -25,3 +25,6 @@ inoremap <Down> <nop>
 " Relative line numbers
 set rnu
 set nu
+
+" Incremental search
+set incsearch

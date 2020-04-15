@@ -49,8 +49,9 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 1 tab == 4 spaces
-set tabstop=4
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
 set ai "Auto indent
 set si "Smart indent
@@ -67,4 +68,3 @@ map <C-l> <C-W>l
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
