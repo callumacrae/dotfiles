@@ -1,4 +1,4 @@
-:source ~/.vimrc
+source ~/.vimrc
 
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -20,6 +20,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
 
+" Navigation
+Plug 'scrooloose/nerdtree'
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'ctrlpvim/ctrlp.vim'
+
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tveskag/nvim-blame-line'
@@ -27,18 +32,14 @@ Plug 'tveskag/nvim-blame-line'
 " Misc
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-obsession'
 
 call plug#end()
 
-" nvim-blame-line
-nnoremap <silent> <leader>b :ToggleBlameLine<CR>
-" autocmd BufEnter * EnableBlameLine
+for f in split(glob('~/.dotfiles/vim/config/plugin-config/*.vim'), "\n")
+  execute 'source' f
+endfor
 
-" coc-prettier
-" @TODO put cocconfig in dotfiles repo
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-nmap <silent> <leader>p :Prettier<CR>
-
-" vim-expand-region
-vmap v <Plug>(expand_region_expand)
-vmap V <Plug>(expand_region_shrink)
+" misc
+nnoremap <leader>ve :vsp $MYVIMRC<CR>
+nnoremap <leader>vs :source $MYVIMRC<CR>
