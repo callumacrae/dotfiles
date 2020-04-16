@@ -2,6 +2,9 @@ source ~/.vimrc
 
 call plug#begin(stdpath('data') . '/plugged')
 
+" Appearance
+Plug 'srcery-colors/srcery-vim'
+
 " Code intelligence and highlighting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
@@ -39,6 +42,9 @@ call plug#end()
 for f in split(glob('~/.dotfiles/vim/config/plugin-config/*.vim'), "\n")
   execute 'source' f
 endfor
+
+colorscheme srcery
+set termguicolors
 
 " misc
 nnoremap <leader>ve :vsp $MYVIMRC<CR>
