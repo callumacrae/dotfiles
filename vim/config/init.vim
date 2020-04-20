@@ -16,12 +16,20 @@ Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'jiangmiao/auto-pairs'
-
 " Code writing helpers
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'AndrewRadev/tagalong.vim'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
+Plug 'mattn/emmet-vim'
+
+Plug 'kana/vim-textobj-user'
+Plug 'fvictorio/vim-textobj-backticks'
+Plug 'glts/vim-textobj-comment'
+Plug 'sgur/vim-textobj-parameter'
+Plug 'whatyouhide/vim-textobj-xmlattr'
 
 " Navigation
 Plug 'scrooloose/nerdtree'
@@ -30,12 +38,22 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-rhubarb'
 Plug 'tveskag/nvim-blame-line'
+Plug 'tpope/vim-fugitive'
 
 " Misc
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'junegunn/vim-peekaboo'
+Plug 'Yilin-Yang/vim-markbar'
+
+Plug 'rizzatti/dash.vim'
 
 call plug#end()
 
@@ -47,5 +65,10 @@ colorscheme srcery
 set termguicolors
 
 " misc
-nnoremap <leader>ve :vsp $MYVIMRC<CR>
+nnoremap <leader>ve :tabe $MYVIMRC<CR>
 nnoremap <leader>vs :source $MYVIMRC<CR>
+
+vmap <leader>l Sfconsole.log<CR>
+nmap <leader>l yssfconsole.log<CR>
+
+set colorcolumn=80,100
