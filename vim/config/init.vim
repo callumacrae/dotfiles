@@ -76,7 +76,5 @@ nmap <leader>l yssfconsole.log<CR>
 
 set colorcolumn=80,100
 
-map <leader>g :Goyo<CR>
-
 set splitbelow
 set splitright
