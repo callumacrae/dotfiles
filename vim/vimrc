@@ -11,7 +11,7 @@ set autoread
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
@@ -55,7 +55,10 @@ set expandtab
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
+set nowrap "Wrap lines
+set breakindent
+set breakindentopt=sbr
+set showbreak=↪>\
 
 " Wrap git commit messages
 filetype indent plugin on

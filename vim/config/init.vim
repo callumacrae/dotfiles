@@ -35,6 +35,7 @@ Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -52,6 +53,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'junegunn/vim-peekaboo'
 Plug 'Yilin-Yang/vim-markbar'
+
+Plug 'junegunn/goyo.vim'
 
 Plug 'rizzatti/dash.vim'
 
@@ -72,3 +75,8 @@ vmap <leader>l Sfconsole.log<CR>
 nmap <leader>l yssfconsole.log<CR>
 
 set colorcolumn=80,100
+
+map <leader>g :Goyo<CR>
+
+set splitbelow
+set splitright
