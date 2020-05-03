@@ -20,8 +20,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'AndrewRadev/tagalong.vim'
-" Plug 'jiangmiao/auto-pairs'
+" Plug 'AndrewRadev/tagalong.vim' - buggy, use vim-surround instead
+" Plug 'jiangmiao/auto-pairs' - buggy, coc-pairs is better
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mattn/emmet-vim'
 
@@ -36,6 +36,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+Plug 'easymotion/vim-easymotion'
 
 " Git
 Plug 'airblade/vim-gitgutter'

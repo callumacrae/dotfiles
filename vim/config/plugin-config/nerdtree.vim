@@ -20,13 +20,13 @@ autocmd FileType nerdtree setlocal relativenumber
 let g:ctrlp_dont_split = 'nerdtree'
 
 " Change mappings to match CtrlP mappings
-let g:NERDTreeMapOpenSplit = 'x'
-let g:NERDTreeMapPreviewSplit = 'gx'
-let g:NERDTreeMapOpenVSplit = 'v'
-let g:NERDTreeMapPreviewVSplit = 'gv'
-let g:NERDTreeMapCloseDir = 'c'
-let g:NERDTreeMapCloseChildren = 'C'
+" let g:NERDTreeMapOpenSplit = 'x'
+" let g:NERDTreeMapPreviewSplit = 'gx'
+" let g:NERDTreeMapOpenVSplit = 'v'
+" let g:NERDTreeMapPreviewVSplit = 'gv'
+" let g:NERDTreeMapCloseDir = 'c'
+" let g:NERDTreeMapCloseChildren = 'C'
 
 " Change mappings to match gitgitter mappings
-let g:NERDTreeMapNextHunk = ']g'
-let g:NERDTreeMapPrevHunk = '[g'
+let g:NERDTreeMapNextHunk = ']h'
+let g:NERDTreeMapPrevHunk = '[h'
