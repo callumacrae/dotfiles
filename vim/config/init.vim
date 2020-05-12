@@ -79,3 +79,12 @@ set colorcolumn=80,100
 
 set splitbelow
 set splitright
+
+autocmd FileType markdown setlocal wrap
+autocmd FileType markdown setlocal spell spelllang=en_gb " ]s [s z= zg
+
+for d in glob('~/.config/nvim/spell/*.add', 1, 1)
+  if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
+    exec 'mkspell! ' . fnameescape(d)
+  endif
+endfor
