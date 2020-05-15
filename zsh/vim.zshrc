@@ -1,1 +1,1 @@
-alias v=nvim
+alias v="fg %nvim || nvim -S"
