@@ -13,6 +13,9 @@ Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'sheerun/vim-polyglot'
 
@@ -81,10 +84,3 @@ set splitbelow
 set splitright
 
 autocmd FileType markdown setlocal wrap
-autocmd FileType markdown setlocal spell spelllang=en_gb " ]s [s z= zg
-
-for d in glob('~/.config/nvim/spell/*.add', 1, 1)
-  if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
-    exec 'mkspell! ' . fnameescape(d)
-  endif
-endfor

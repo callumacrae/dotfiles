@@ -1,3 +1,25 @@
 {
-	"coc.preferences.formatOnSaveFiletypes": []
+	"coc.preferences.formatOnSaveFiletypes": [],
+	"cSpell.language": "en-GB",
+	"cSpell.enabledLanguageIds": [
+		"vim",
+		"css",
+		"git-commit",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"json",
+		"markdown",
+		"plaintext",
+		"scss",
+		"text",
+		"typescript",
+		"typescriptreact",
+		"vue"
+	],
+	"cSpell.userWords": [
+    "Callum",
+    "Macrae",
+    "prerender"
+  ]
 }
