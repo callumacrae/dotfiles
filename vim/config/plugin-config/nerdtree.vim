@@ -27,6 +27,8 @@ let g:ctrlp_dont_split = 'nerdtree'
 " let g:NERDTreeMapCloseDir = 'c'
 " let g:NERDTreeMapCloseChildren = 'C'
 
+autocmd FileType nerdtree nnoremap <buffer> <c-v> *@:call nerdtree#ui_glue#invokeKeyMap("s")<CR>
+
 " Change mappings to match gitgitter mappings
 let g:NERDTreeMapNextHunk = ']h'
 let g:NERDTreeMapPrevHunk = '[h'

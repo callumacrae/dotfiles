@@ -1,27 +1,21 @@
 source ~/.vimrc-common
 
-" Mostly pinched from http://amix.dk/vim/vimrc.html
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" Highlight search results
-set hlsearch
+" Searching
+set incsearch
+set nohlsearch
 
 " For regular expressions turn magic on
 set magic
 
 " Show line numbers
-set number
+set rnu
+set nu
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -55,10 +49,11 @@ set expandtab
 
 set ai "Auto indent
 set si "Smart indent
-set nowrap "Wrap lines
+set nowrap
 set breakindent
 set breakindentopt=sbr
 set showbreak=↪>\
+autocmd FileType markdown setlocal wrap
 
 " Wrap git commit messages
 filetype indent plugin on
@@ -67,7 +62,3 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

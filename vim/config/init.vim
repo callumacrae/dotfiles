@@ -27,6 +27,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'jiangmiao/auto-pairs' - buggy, coc-pairs is better
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mattn/emmet-vim'
+Plug 'mogelbrod/vim-jsonpath'
 
 Plug 'kana/vim-textobj-user'
 Plug 'fvictorio/vim-textobj-backticks'
@@ -83,4 +84,4 @@ set colorcolumn=80,100
 set splitbelow
 set splitright
 
-autocmd FileType markdown setlocal wrap
+set scrolloff=10
