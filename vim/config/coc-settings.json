@@ -22,8 +22,12 @@
     "Macrae",
     "Math",
     "color",
-    "prerender",
+    "Objs",
+    "SVGs",
+    "contentful",
     "presets",
+    "programmatically",
+    "slugify",
     "trustyle",
     "uswitch"
   ]
