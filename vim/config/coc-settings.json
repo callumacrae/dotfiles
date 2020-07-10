@@ -19,16 +19,25 @@
 	],
 	"cSpell.userWords": [
     "Callum",
+    "Callum's",
+    "Coord",
     "Macrae",
     "Math",
-    "color",
     "Objs",
     "SVGs",
+    "color",
+    "colors",
     "contentful",
+    "instanceof",
+    "offscreen",
+    "predraw",
     "presets",
     "programmatically",
+    "rgba",
     "slugify",
     "trustyle",
-    "uswitch"
+    "typeof",
+    "uswitch",
+    "webgl"
   ]
 }

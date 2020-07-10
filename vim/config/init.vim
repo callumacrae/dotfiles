@@ -27,7 +27,7 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'jiangmiao/auto-pairs' - buggy, coc-pairs is better
 Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mattn/emmet-vim'
-Plug 'mogelbrod/vim-jsonpath'
+" Plug 'mogelbrod/vim-jsonpath'
 
 Plug 'kana/vim-textobj-user'
 Plug 'fvictorio/vim-textobj-backticks'
@@ -56,10 +56,10 @@ Plug 'tpope/vim-obsession'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'junegunn/vim-peekaboo'
-Plug 'Yilin-Yang/vim-markbar'
+" Plug 'junegunn/vim-peekaboo'
+" Plug 'Yilin-Yang/vim-markbar'
 
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 
 Plug 'rizzatti/dash.vim'
 
