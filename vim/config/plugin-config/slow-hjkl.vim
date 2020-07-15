@@ -5,6 +5,11 @@ function SlowDirection(direction)
     sleep 200m
   endif
   let count = v:count == 0 ? 1 : v:count
+
+	if count >= 5
+		" Save current position to jumplist
+		mark '
+	endif
   exec 'normal! ' . count . a:direction
 endfunction
 
