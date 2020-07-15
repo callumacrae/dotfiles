@@ -49,6 +49,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
 Plug 'tveskag/nvim-blame-line'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
 
 " Misc
 Plug 'terryma/vim-expand-region'
