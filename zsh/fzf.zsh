@@ -4,6 +4,9 @@ if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi
 
+# Use ag to respect gitignore
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
 # Auto-completion
 # ---------------
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
