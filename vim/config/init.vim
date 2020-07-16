@@ -41,7 +41,7 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
+" Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
 
 " Git
