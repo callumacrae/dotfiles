@@ -1,5 +1,7 @@
 {
 	"suggest.autoTrigger": "none",
+	"signature.hideOnTextChange": true,
+	"signature.target": "echo",
 	"coc.preferences.formatOnSaveFiletypes": ["*"],
 	"cSpell.language": "en-GB",
 	"cSpell.enabledLanguageIds": [
@@ -25,6 +27,7 @@
 		"Coord",
 		"Macrae",
 		"Math",
+		"Neighbors",
 		"Objs",
 		"PIXI",
 		"SVGs",
@@ -33,7 +36,10 @@
 		"colors",
 		"contentful",
 		"devtool",
+		"gameplay",
 		"instanceof",
+		"mailto",
+		"mixins",
 		"offscreen",
 		"predraw",
 		"presets",
