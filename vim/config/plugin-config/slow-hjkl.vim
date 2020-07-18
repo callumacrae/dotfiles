@@ -6,7 +6,7 @@ function SlowDirection(direction)
   endif
   let count = v:count == 0 ? 1 : v:count
 
-	if count >= 5
+	if count >= 5 && (a:direction == 'j' || a:direction == 'k')
 		" Save current position to jumplist
 		mark '
 	endif
