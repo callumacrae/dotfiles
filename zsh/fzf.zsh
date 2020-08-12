@@ -5,7 +5,7 @@ if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
 fi
 
 # Use ag to respect gitignore
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # Auto-completion
 # ---------------

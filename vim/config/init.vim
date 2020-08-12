@@ -16,6 +16,7 @@ Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
+Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 
 Plug 'sheerun/vim-polyglot'
 
@@ -25,13 +26,14 @@ Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
 " Plug 'AndrewRadev/tagalong.vim' - buggy, use vim-surround instead
 " Plug 'jiangmiao/auto-pairs' - buggy, coc-pairs is better
-Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-pairs', {'do': 'yarn install --frozen-lockfile'}
 Plug 'mattn/emmet-vim'
 " Plug 'mogelbrod/vim-jsonpath'
 
 Plug 'kana/vim-textobj-user'
 Plug 'fvictorio/vim-textobj-backticks'
-Plug 'glts/vim-textobj-comment'
+" Plug 'glts/vim-textobj-comment' - conflicts with vim-textobj-css
+Plug 'jasonlong/vim-textobj-css'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 
@@ -88,3 +90,7 @@ set splitbelow
 set splitright
 
 set scrolloff=10
+
+set foldopen-=block
+
+set inccommand=nosplit
