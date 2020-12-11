@@ -17,6 +17,7 @@ Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+Plug 'statico/vim-javascript-sql'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -83,6 +84,10 @@ nnoremap <leader>vs :source $MYVIMRC<CR>
 
 vmap <leader>l Sfconsole.log<CR>
 nmap <leader>l yssfconsole.log<CR>
+
+" is there a nicer way to do this?
+nnoremap [t vato<Esc>
+nnoremap ]t vat<Esc>
 
 set colorcolumn=80,100
 
