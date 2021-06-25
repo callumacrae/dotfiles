@@ -1,26 +1,26 @@
 {
-	"suggest.autoTrigger": "none",
-	"signature.hideOnTextChange": true,
-	"signature.target": "echo",
-	"coc.preferences.formatOnSaveFiletypes": [],
-	"cSpell.language": "en-GB",
-	"cSpell.enabledLanguageIds": [
-		"vim",
-		"css",
-		"git-commit",
-		"html",
-		"javascript",
-		"javascriptreact",
-		"json",
-		"markdown",
-		"plaintext",
-		"scss",
-		"text",
-		"typescript",
-		"typescriptreact",
-		"vue"
-	],
-	"cSpell.userWords": [
+  "suggest.autoTrigger": "none",
+  "signature.hideOnTextChange": true,
+  "signature.target": "echo",
+  "coc.preferences.formatOnSaveFiletypes": [],
+  "cSpell.language": "en-GB",
+  "cSpell.enabledLanguageIds": [
+    "vim",
+    "css",
+    "git-commit",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "markdown",
+    "plaintext",
+    "scss",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
+  "cSpell.userWords": [
     "Callum",
     "Callum's",
     "Codepen",
@@ -70,5 +70,17 @@
     "uswitch",
     "vars",
     "webgl"
-  ]
+  ],
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    }
+  }
 }

@@ -3,7 +3,7 @@
 # Only define if not already defined
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/.dotfiles"
 
-[ -x "$(which brew)" ] && brew install neovim
+[ -x "$(which brew)" ] && brew install neovim ccls
 [ -x "$(which apt-get)" ] && sudo apt-get install -y vim neovim
 
 [ -f ~/.vimrc ] && mv ~/.vimrc ~/.vimrc_old
