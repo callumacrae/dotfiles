@@ -89,6 +89,9 @@ nmap <leader>l yssfconsole.log<CR>
 nnoremap [t vato<Esc>
 nnoremap ]t vat<Esc>
 
+" Fix performance issue with vim-vue https://github.com/posva/vim-vue#vim-slows-down-when-using-this-plugin-how-can-i-fix-that
+let g:vue_pre_processors = ['scss', 'typescript']
+
 set colorcolumn=80,100
 
 set splitbelow
