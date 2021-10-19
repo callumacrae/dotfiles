@@ -11,6 +11,7 @@ Thumbs.db
 .vagrant
 .vscode
 Session.vim
+.vim
 
 .sass-cache
 

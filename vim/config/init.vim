@@ -18,8 +18,11 @@ Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-spell-checker', {'do': 'yarn install --frozen-lockfile'}
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 Plug 'statico/vim-javascript-sql'
+" Plug 'fannheyward/coc-styled-components'
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 Plug 'sheerun/vim-polyglot'
+Plug 'metakirby5/codi.vim'
 
 " Code writing helpers
 Plug 'tpope/vim-surround'
@@ -46,6 +49,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Plug 'mileszs/ack.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'vim-scripts/a.vim'
 
 " Git
 Plug 'airblade/vim-gitgutter'

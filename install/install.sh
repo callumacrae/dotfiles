@@ -6,7 +6,7 @@
 . $DOTFILES/install/packages.sh
 . $DOTFILES/install/git.sh
 . $DOTFILES/install/zsh.sh
-. $DOTFILES/install/vim.sh
+. $DOTFILES/install/vim.sh # depends on npm being installed
 . $DOTFILES/install/node.sh
 . $DOTFILES/install/irssi.sh
 . $DOTFILES/install/misc.sh
