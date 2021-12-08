@@ -16,6 +16,7 @@ Plug 'metakirby5/codi.vim'
 " Code writing helpers
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'kana/vim-textobj-user'
@@ -23,12 +24,14 @@ Plug 'fvictorio/vim-textobj-backticks'
 " Plug 'glts/vim-textobj-comment' - conflicts with vim-textobj-css
 Plug 'sgur/vim-textobj-parameter'
 Plug 'whatyouhide/vim-textobj-xmlattr'
+Plug 'beloglazov/vim-textobj-quotes'
 
 " Navigation
 Plug 'scrooloose/nerdtree'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'phaazon/hop.nvim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -66,7 +69,8 @@ nnoremap [t vato<Esc>
 nnoremap ]t vat<Esc>
 
 " Fix performance issue with vim-vue https://github.com/posva/vim-vue#vim-slows-down-when-using-this-plugin-how-can-i-fix-that
-let g:vue_pre_processors = ['scss', 'typescript']
+" let g:vue_pre_processors = ['scss', 'typescript']
+let g:vue_pre_processors = 'detect_on_enter'
 
 lua << EOF
 vim.opt.colorcolumn = { 80, 100 }
