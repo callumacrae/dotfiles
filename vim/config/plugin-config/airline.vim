@@ -7,3 +7,6 @@ let g:airline_section_z = '♥️ '
 
 " Disable coc airline integration
 let g:airline#extensions#coc#enabled = 0
+
+let g:airline#extensions#branch#displayed_head_limit = 20
+let g:airline#extensions#branch#format = 1

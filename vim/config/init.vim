@@ -43,6 +43,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-rsi'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

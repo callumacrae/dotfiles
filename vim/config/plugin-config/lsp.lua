@@ -49,7 +49,8 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
-    }
+    },
+    root_dir = util.root_pattern('.git'), -- package.json not accurate for monorepos
   }))
 end
 
