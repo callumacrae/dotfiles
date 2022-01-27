@@ -30,5 +30,5 @@ let g:ctrlp_dont_split = 'nerdtree'
 autocmd FileType nerdtree nnoremap <buffer> <c-v> *@:call nerdtree#ui_glue#invokeKeyMap("s")<CR>
 
 " Change mappings to match gitgitter mappings
-let g:NERDTreeMapNextHunk = ']h'
-let g:NERDTreeMapPrevHunk = '[h'
+let g:NERDTreeGitStatusMapNextHunk = ']h'
+let g:NERDTreeGitStatusMapPrevHunk = '[h'

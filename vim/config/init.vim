@@ -12,6 +12,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'sheerun/vim-polyglot'
 Plug 'metakirby5/codi.vim'
+Plug 'kubejm/jest.nvim'
 
 " Code writing helpers
 Plug 'tpope/vim-surround'
@@ -44,6 +45,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rsi'
+Plug 'klen/nvim-config-local', {'branch': 'main'}
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -82,4 +84,6 @@ vim.opt.splitright = true
 vim.opt.scrolloff = 10
 
 vim.opt.inccommand = 'nosplit'
+
+require('config-local').setup()
 EOF

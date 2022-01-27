@@ -12,6 +12,7 @@ Thumbs.db
 .vscode
 Session.vim
 .vim
+.vimrc.lua
 
 .sass-cache
 
