@@ -1,16 +1,22 @@
-local configs = require 'lspconfig/configs'
-local util = require 'lspconfig/util'
+local configs = require 'lspconfig.configs'
+local util = require 'lspconfig.util'
 local nvim_lsp = require 'lspconfig'
 local coq = require "coq"
 
-configs.glsl = {
-  default_config = {
-    cmd = { 'glslls', '--stdin' },
-    filetypes = { 'glsl' },
-    root_dir = util.root_pattern('.git'),
-    single_file_support = true,
-  },
-};
+if not configs.glsl then
+  configs.glsl = {
+    default_config = {
+      cmd = { 'glslls', '--stdin' },
+      filetypes = { 'glsl' },
+      root_dir = util.root_pattern('.git'),
+      single_file_support = true,
+    },
+  };
+end
+
+nvim_lsp.sumneko_lua.document_config.default_config.settings.Lua.diagnostics = {
+  globals = {'vim'}
+}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -43,7 +49,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'eslint', 'html', 'volar', 'glsl' }
+local servers = { 'tsserver', 'eslint', 'html', 'volar', 'glsl', 'sumneko_lua' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
     on_attach = on_attach,

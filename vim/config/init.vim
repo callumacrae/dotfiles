@@ -12,7 +12,6 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'sheerun/vim-polyglot'
 Plug 'metakirby5/codi.vim'
-Plug 'kubejm/jest.nvim'
 
 " Code writing helpers
 Plug 'tpope/vim-surround'
@@ -67,9 +66,14 @@ nnoremap <leader>vs :source $MYVIMRC<CR>
 vmap <leader>l Sfconsole.log<CR>
 nmap <leader>l yssfconsole.log<CR>
 
+" wrap contents of function in JSON.parse(JSON.stringify())
+nmap <leader>sp ysi))iJSON.stringify<esc>ysi))iJSON.parse<esc>
+
 " is there a nicer way to do this?
 nnoremap [t vato<Esc>
 nnoremap ]t vat<Esc>
+
+command! CpPath let @+=@%
 
 " Fix performance issue with vim-vue https://github.com/posva/vim-vue#vim-slows-down-when-using-this-plugin-how-can-i-fix-that
 " let g:vue_pre_processors = ['scss', 'typescript']
