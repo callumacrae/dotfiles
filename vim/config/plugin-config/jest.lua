@@ -22,7 +22,6 @@ function _G.jest_file()
 
   local args = {}
   table.insert(args, '--runTestsByPath ' .. c_file)
-  table.insert(args, '--watch')
   run_jest(args)
 end
 
@@ -36,7 +35,6 @@ function _G.jest_single()
     local args = {}
     table.insert(args, '--runTestsByPath ' .. c_file)
     table.insert(args, "-t='" .. test_name .. "'")
-    table.insert(args, "--watch")
     run_jest(args)
   else
     print('ERR: Could not find test name. Place cursor on line with test name.')

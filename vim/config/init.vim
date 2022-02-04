@@ -15,7 +15,7 @@ Plug 'metakirby5/codi.vim'
 
 " Code writing helpers
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'editorconfig/editorconfig-vim'
 
