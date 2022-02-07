@@ -1,44 +1,43 @@
--- Based on kubejm/jest.nvim, but copies to clipboard
-local function get_current_file_path()
-  return vim.fn.getreg('%')
-end
-
+-- Based on kubejm/jest.nvim, but copies to clipboard and has better matching
 local function run_jest(args)
   local cmd = vim.g.jest_cmd or 'npx jest'
-  local t = {}
-  table.insert(t, cmd)
-
-  if args ~= nil then
-    for _, v in pairs(args) do
-      table.insert(t, v)
-    end
-  end
-
-  vim.fn.setreg('+', table.concat(t, ' '))
+  local c_file = vim.fn.getreg('%')
+  vim.fn.setreg('+', cmd .. ' --runTestsByPath ' .. c_file .. ' ' .. args)
+  print('Copied jest command to clipboard')
 end
 
 function _G.jest_file()
-  local c_file = get_current_file_path()
+  run_jest('')
+end
 
-  local args = {}
-  table.insert(args, '--runTestsByPath ' .. c_file)
-  run_jest(args)
+local function jest_single_on_line()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  vim.api.nvim_command('silent normal $va)o2hy')
+  local str = vim.fn.getreg('"')
+  local _, _, test_name = string.find(str, "%s*it%(%s*['\"](.+)['\"]")
+  vim.api.nvim_win_set_cursor(0, cursor)
+
+  if test_name == nil then
+    return false
+  end
+
+  run_jest("-t='" .. test_name .. "'")
+  return true
 end
 
 function _G.jest_single()
-  local c_file = get_current_file_path()
-  local line = vim.api.nvim_get_current_line()
+  if jest_single_on_line() then
+    return
+  end
 
-  local _, _, test_name = string.find(line, "^%s*%a+%(['\"](.+)['\"]")
+  local view = vim.fn.winsaveview()
+  vim.api.nvim_command('silent exec "normal [M?func\\<CR>w*"')
 
-  if test_name ~= nil then
-    local args = {}
-    table.insert(args, '--runTestsByPath ' .. c_file)
-    table.insert(args, "-t='" .. test_name .. "'")
-    run_jest(args)
-  else
+  if not jest_single_on_line() then
     print('ERR: Could not find test name. Place cursor on line with test name.')
   end
+
+  vim.fn.winrestview(view)
 end
 
 vim.cmd('command! JestFile :call v:lua.jest_file()')
