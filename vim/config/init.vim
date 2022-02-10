@@ -39,6 +39,10 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 
+" tmux
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'preservim/vimux'
+
 " Misc
 Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-repeat'

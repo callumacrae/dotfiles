@@ -16,6 +16,15 @@ set magic
 " Show line numbers
 set rnu
 set nu
+autocmd WinLeave * :setlocal nornu
+autocmd WinEnter * :setlocal rnu
+autocmd WinNew * :setlocal rnu
+
+augroup vim help
+	autocmd!
+	autocmd FileType help setlocal rnu
+	autocmd FileType help setlocal nu
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
