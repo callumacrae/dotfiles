@@ -4,7 +4,7 @@
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/.dotfiles"
 
 if [[ `uname` == 'Darwin' ]]; then
-	brew install tmux
+	brew install tmux ical-buddy
 fi
 
 # Set up config files
