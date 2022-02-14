@@ -29,7 +29,7 @@ cpu_load="#(~/.dotfiles/tmux/status/cpu-load.sh)"
 audio_status="#(~/.dotfiles/tmux/status/audio-status.sh)"
 next_event="#(~/.dotfiles/tmux/status/next-event.sh)"
 set -g status-right "${prefix_highlight}#[default]${cpu_load} #[fg=brightwhite,bg=$xgray3] #{pomodoro_status}#{online_status}  #[fg=brightwhite]${audio_status}  ${battery_status}#[fg=brightwhite]${next_event} #[fg=brightwhite,bg=$xgray5] %H:%M | %F "
-set -g status-right-length 80
+set -g status-right-length 90
 
 set -g @batt_color_charge_primary_tier8 brightgreen
 set -g @batt_color_charge_primary_tier7 brightgreen
