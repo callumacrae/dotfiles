@@ -1,19 +1,7 @@
 #!/bin/bash
 
-# this took so long who knew awk was an entire language lmao
-echo $(vm_stat) | awk '
-  function number_for(str) {
-    match($0, str ": [0-9]*")
-    line = substr($0, RSTART, RLENGTH)
-    split(line, split_line, " ")
-    return split_line[3]
-  }
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-  {
-    active = number_for("Pages active")
-    inactive = number_for("Pages inactive")
-    percent = 100 / (active + inactive) * active
-    printf("%.1f%% ", percent)
-  }'
+echo $(vm_stat) | awk -f "$CURRENT_DIR/cpu-load-memory.awk"
 
 uptime | awk 'BEGIN {ORS=""} {print $(NF-2), $(NF-1), $NF}'

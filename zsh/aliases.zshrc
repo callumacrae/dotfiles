@@ -10,3 +10,5 @@ alias trash="nocorrect trash"
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; reloadFinder'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; reloadFinder'
 alias reloadFinder='killall Finder /System/Library/CoreServices/Finder.app'
+
+alias irc="mosh irc tmux attach"

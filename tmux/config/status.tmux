@@ -18,9 +18,12 @@ set -g @prefix_highlight_bg 'brightwhite'
 set -g @prefix_highlight_show_copy_mode 'on'
 set -g status-left-style fg=brightwhite,bg=$xgray1
 set -g status-left "#[fg=brightwhite,bg=$xgray4,bold] #S #[fg=brightwhite,bg=$xgray3] #I:#P "
+set -g status-left-length 30
 
 setw -g window-status-current-style fg=brightwhite,bg=$xgray1
 setw -g window-status-current-format " #W (#F) "
+setw -g window-status-style fg=brightwhite,bg=$xgray1
+setw -g window-status-format " #W (#F) "
 set -g status-right-style fg=brightwhite,bg=$xgray1
 
 prefix_highlight="#{?client_prefix,#[fg=$xgray1]#[bg=brightwhite] ^A #[default] ,#{?pane_in_mode,#[default]#[fg=white]#[bold]#[bg=blue] COPY #[default] ,}}"
@@ -28,7 +31,8 @@ battery_status="#{battery_color_charge_fg}#[bg=$xgray3]#{battery_icon_charge} #{
 cpu_load="#(~/.dotfiles/tmux/status/cpu-load.sh)"
 audio_status="#(~/.dotfiles/tmux/status/audio-status.sh)"
 next_event="#(~/.dotfiles/tmux/status/next-event.sh)"
-set -g status-right "${prefix_highlight}#[default]${cpu_load} #[fg=brightwhite,bg=$xgray3] #{pomodoro_status}#{online_status}  #[fg=brightwhite]${audio_status}  ${battery_status}#[fg=brightwhite]${next_event} #[fg=brightwhite,bg=$xgray5] %H:%M | %F "
+notifications="#(~/.dotfiles/tmux/status/notifications.py)"
+set -g status-right "${prefix_highlight}#[default]${cpu_load} #[fg=brightwhite,bg=$xgray3] #{pomodoro_status}#{online_status}  #[fg=brightwhite]${audio_status}  ${battery_status}#[fg=brightwhite]${next_event} ${notifications}#[fg=brightwhite,bg=$xgray5,nobold] %H:%M | %F "
 set -g status-right-length 90
 
 set -g @batt_color_charge_primary_tier8 brightgreen

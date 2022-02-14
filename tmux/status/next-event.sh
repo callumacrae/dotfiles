@@ -8,14 +8,15 @@ if [ -f $cache_file ]; then
   now=$(date +"%H:%M")
 
   if [[ ${cache_modified:0:4} = ${now:0:4} ]]; then
-  	cat $cache_file
-  	exit 0
+    cat $cache_file
+    exit 0
   fi
 fi
 
 next=($(icalBuddy -nrd -std -n -li 1 -ea -eed -nc -b '' -iep "title,datetime" -po "datetime,title" -ps '| |' -tf "%Y-%m-%d %H:%M" eventsToday))
 
 if [ -z $next ]; then
+  echo "" > $cache_file
   exit 0
 fi
 

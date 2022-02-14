@@ -23,17 +23,14 @@ setw -g monitor-activity on
 set -g visual-activity on
 
 # vim-tmux-navigator config
-is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-	| grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
-bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
-bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
-bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
-tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
-if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
-	"bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
-if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
-	"bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+forward_programs="view|n?vim?|fzf"
+should_forward="ps -o state= -o comm= -t '#{pane_tty}' \
+  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?($forward_programs)(diff)?$'"
+bind -n 'C-h' if-shell "$should_forward" 'send-keys C-h' 'select-pane -L'
+bind -n 'C-j' if-shell "$should_forward" 'send-keys C-j' 'select-pane -D'
+bind -n 'C-k' if-shell "$should_forward" 'send-keys C-k' 'select-pane -U'
+bind -n 'C-l' if-shell "$should_forward" 'send-keys C-l' 'select-pane -R'
+bind -n C-\\ if-shell "$should_forward" 'send-keys C-\\' 'select-pane -l'
 
 bind-key -T copy-mode-vi 'C-h' select-pane -L
 bind-key -T copy-mode-vi 'C-j' select-pane -D
