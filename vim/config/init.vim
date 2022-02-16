@@ -37,10 +37,9 @@ Plug 'phaazon/hop.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-dispatch'
 
 " tmux
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'callumacrae/vim-tmux-navigator' " includes https://github.com/christoomey/vim-tmux-navigator/pull/237
 Plug 'preservim/vimux'
 
 " Misc

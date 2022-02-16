@@ -16,7 +16,7 @@ zstyle ':prezto:load' pmodule \
   'completion' \
   'git' \
   'homebrew' \
-  'node' \
+  'zsh-nvm' \
   'osx' \
   'history-substring-search' \
   'syntax-highlighting' \

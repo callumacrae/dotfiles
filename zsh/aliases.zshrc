@@ -1,5 +1,4 @@
 alias reload=". ~/.zshrc" # Reloads ZSH config
-alias intellij="open -a 'IntelliJ IDEA' ." # Opens current directory in idea
 [ -x "$(which ack-grep)" ] && alias ack=ack-grep # ack sometimes ack-grep
 alias treeAll="tree -I 'node_modules|\.git|\.sass-cache|\.idea' -a"
 

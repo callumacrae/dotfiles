@@ -27,6 +27,11 @@ ln -s ~/.pure/pure.zsh /usr/local/share/zsh/site-functions/prompt_pure_setup
 ln -s ~/.pure/async.zsh /usr/local/share/zsh/site-functions/async
 
 
+# Install zsh-nvm
+mkdir "${ZDOTDIR:-$HOME}/.zprezto/contrib"
+git clone git@github.com:lukechilds/zsh-nvm.git "${ZDOTDIR:-$HOME}/.zprezto/contrib"
+
+
 # Set up config files
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/.zshrc_old
 ln -s ${DOTFILES}/zsh/zshrc ~/.zshrc

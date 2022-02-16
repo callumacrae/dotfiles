@@ -11,8 +11,8 @@ bind -r H resize-pane -L 3
 bind -r L resize-pane -R 3
 
 # more vim!!
-bind v split-window -h
-bind s split-window -v
+bind v split-window -h -c "#{pane_current_path}"
+bind s split-window -v -c "#{pane_current_path}"
 bind X kill-pane
 bind -T copy-mode-vi v send -X begin-selection
 bind -T copy-mode-vi y send -X copy-selection-and-cancel
@@ -26,10 +26,10 @@ set -g visual-activity on
 forward_programs="view|n?vim?|fzf"
 should_forward="ps -o state= -o comm= -t '#{pane_tty}' \
   | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?($forward_programs)(diff)?$'"
-bind -n 'C-h' if-shell "$should_forward" 'send-keys C-h' 'select-pane -L'
-bind -n 'C-j' if-shell "$should_forward" 'send-keys C-j' 'select-pane -D'
-bind -n 'C-k' if-shell "$should_forward" 'send-keys C-k' 'select-pane -U'
-bind -n 'C-l' if-shell "$should_forward" 'send-keys C-l' 'select-pane -R'
+bind -n 'C-h' if-shell "$should_forward" 'send-keys C-h' '%if "#{?pane_at_left,0,1}" select-pane -L %endif'
+bind -n 'C-j' if-shell "$should_forward" 'send-keys C-j' '%if "#{?pane_at_bottom,0,1}" select-pane -D %endif'
+bind -n 'C-k' if-shell "$should_forward" 'send-keys C-k' '%if "#{?pane_at_top,0,1}" select-pane -U %endif'
+bind -n 'C-l' if-shell "$should_forward" 'send-keys C-l' '%if "#{?pane_at_right,0,1}" select-pane -R %endif'
 bind -n C-\\ if-shell "$should_forward" 'send-keys C-\\' 'select-pane -l'
 
 bind-key -T copy-mode-vi 'C-h' select-pane -L
