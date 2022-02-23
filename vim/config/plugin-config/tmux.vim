@@ -9,7 +9,7 @@ let g:VimuxHeight = "33"
 let g:VimuxOrientation = "h"
 let g:VimuxUseNearest = v:false
 let g:VimuxPromptString = "❯ "
-let g:VimuxCloseOnExit = v:true
+let g:VimuxRunnerName = "vimuxout"
 
  " Prompt for a command to run
  map <Leader>vp :VimuxPromptCommand<CR>

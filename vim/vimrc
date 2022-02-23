@@ -13,12 +13,17 @@ set nohlsearch
 " For regular expressions turn magic on
 set magic
 
+function! IsFloating() abort
+	let l:cfg = nvim_win_get_config(0)
+	return !empty(l:cfg.relative) || l:cfg.external
+endfunction
+
 " Show line numbers
 set rnu
 set nu
 autocmd WinLeave * :setlocal nornu
-autocmd WinEnter * :setlocal rnu
-autocmd WinNew * :setlocal rnu
+autocmd WinEnter * :if !IsFloating() | setlocal rnu | endif
+autocmd WinNew * :if !IsFloating() | setlocal rnu | endif
 
 augroup vim help
 	autocmd!

@@ -1,29 +1,17 @@
-# Colourful
-zstyle ':prezto:*:*' color 'yes'
-
-# Set theme to pure
-zstyle ':prezto:module:prompt' theme 'pure'
-
-# Load modules
 zstyle ':prezto:load' pmodule \
   'environment' \
   'terminal' \
   'editor' \
-  'history' \
-  'directory' \
-  'spectrum' \
-  'utility' \
-  'completion' \
-  'git' \
-  'homebrew' \
-  'zsh-nvm' \
-  'osx' \
-  'history-substring-search' \
   'syntax-highlighting' \
-  'prompt'
+  'directory' \
+  'history' \
+  'spectrum' \
+  'zsh-nvm' \
+  'prompt' \
+  'completion'
 
-# Vim key bindings
+zstyle ':prezto:*:*' color 'yes'
+zstyle ':prezto:module:prompt' theme 'pure'
+zstyle ':prompt:pure:prompt:success' color '242'
 zstyle ':prezto:module:editor' key-bindings 'vi'
-
-# Auto convert .... to ../..
 zstyle ':prezto:module:editor' dot-expansion 'yes'

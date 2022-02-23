@@ -5,7 +5,7 @@
 
 [ -x "$(which brew)" ] && brew install neovim ccls clang-format lua-language-server
 [ -x "$(which apt-get)" ] && sudo apt-get install -y vim neovim
-npm i -g typescript typescript-language-server vscode-langservers-extracted @volar/server
+npm i -g typescript typescript-language-server vscode-langservers-extracted @volar/server tsun
 
 [ -f ~/.vimrc ] && mv ~/.vimrc ~/.vimrc_old
 ln -s ${DOTFILES}/vim/vimrc ~/.vimrc

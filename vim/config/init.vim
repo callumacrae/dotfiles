@@ -27,8 +27,7 @@ Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'beloglazov/vim-textobj-quotes'
 
 " Navigation
-Plug 'scrooloose/nerdtree'
-Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'phaazon/hop.nvim'
@@ -89,6 +88,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 20
 
 vim.opt.inccommand = 'nosplit'
 

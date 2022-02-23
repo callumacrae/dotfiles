@@ -21,15 +21,10 @@ done
 sudo chsh -s /bin/zsh `whoami`
 
 
-# Install pure
-git clone https://github.com/sindresorhus/pure.git ~/.pure
-ln -s ~/.pure/pure.zsh /usr/local/share/zsh/site-functions/prompt_pure_setup
-ln -s ~/.pure/async.zsh /usr/local/share/zsh/site-functions/async
-
-
 # Install zsh-nvm
 mkdir "${ZDOTDIR:-$HOME}/.zprezto/contrib"
 git clone git@github.com:lukechilds/zsh-nvm.git "${ZDOTDIR:-$HOME}/.zprezto/contrib"
+echo "switch zsh-nvm to riatre fork: https://github.com/lukechilds/zsh-nvm/pull/76"
 
 
 # Set up config files
