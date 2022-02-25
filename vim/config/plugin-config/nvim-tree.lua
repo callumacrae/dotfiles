@@ -1,5 +1,3 @@
--- vim.g.nvim_tree_ident_markers = 1
-
 vim.g.nvim_tree_show_icons = {
   git = 1,
   folders = 1,
@@ -33,7 +31,7 @@ local list = {
   {key = "<C-t>", action = "tabnew"},
   {key = "<C-k>", action = "prev_sibling"},
   {key = "<C-j>", action = "next_sibling"},
-  {key = "p", action = "parent_node"},
+  {key = { "<C-h>", "<C-p>" }, action = "parent_node"},
   {key = "<Tab>", action = "preview"},
   {key = "K", action = "first_sibling"},
   {key = "J", action = "last_sibling"},

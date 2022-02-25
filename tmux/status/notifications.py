@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# This script uses the notification center notifications but those suck a bit - for example when
+# you read a message in slack, the notifications doesn't go away. notifications-2.sh is an
+# improvement
+
 import sys
 import sqlite3
 import subprocess

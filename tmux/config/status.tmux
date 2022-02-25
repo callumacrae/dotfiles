@@ -31,7 +31,7 @@ battery_status="#{battery_color_charge_fg}#[bg=$xgray3]#{battery_icon_charge} #{
 cpu_load="#(~/.dotfiles/tmux/status/cpu-load.sh)"
 audio_status="#(~/.dotfiles/tmux/status/audio-status.sh)"
 next_event="#(~/.dotfiles/tmux/status/next-event.sh)"
-notifications="#(~/.dotfiles/tmux/status/notifications.py)"
+notifications="#(~/.dotfiles/tmux/status/notifications-2.sh)"
 set -g status-right "${prefix_highlight}#[default]${cpu_load} #[fg=brightwhite,bg=$xgray3] #{pomodoro_status}#{online_status}  #[fg=brightwhite]${audio_status}  ${battery_status}#[fg=brightwhite]${next_event} ${notifications}#[fg=brightwhite,bg=$xgray5,nobold] %H:%M | %F "
 set -g status-right-length 90
 

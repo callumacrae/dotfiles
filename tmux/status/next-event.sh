@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cache_file="/tmp/next-event-tmux-cache"
+cache_file="${TMPDIR}/next-event-tmux-cache"
 
 # icalBuddy isn't very CPU friendly so cache until next 10 minutes (HH:M*)
 if [ -f $cache_file ]; then
