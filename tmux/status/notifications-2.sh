@@ -32,12 +32,18 @@ if [ $is_dnd -eq 1 ]; then
   exit 0
 fi
 
+week_day=$(date +"%u")
+hour=$(date +"%H")
+
+office_hours=$(( week_day < 6 && hour >= 9 && hour < 18))
+
 dock_notifications=$(osascript $CURRENT_DIR/notifications-dock.scpt)
-github_notifications=$(gh api notifications -q 'map(select(.unread)) | length')
+[ $office_hours -eq 1 ] &&
+  github_notifications=$(gh api notifications -q 'map(select(.unread)) | length')
 notifications=$(( dock_notifications + github_notifications ))
 
 output=""
-if [ $notifications ]; then
+if [ $notifications -gt 0 ]; then
   output="#[fg=brightwhite,bg=red,bold] ${notifications} "
 fi
 echo "$output"

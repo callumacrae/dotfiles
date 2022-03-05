@@ -23,7 +23,7 @@ fi
 timestampNext=$(date -j -f "%Y-%m-%d %H:%M:%S" "${next[0]} ${next[1]}:00" +%s)
 
 # events after 6pm don't count
-if [ $timestampNext -gt $(date -j -f "%H:%M:%S" "18:00:00" +%s) ]; then
+if [ $timestampNext -ge $(date -j -f "%H:%M:%S" "18:00:00" +%s) ]; then
   echo "" > $cache_file
   exit 0
 fi
