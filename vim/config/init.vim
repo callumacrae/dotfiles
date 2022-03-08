@@ -29,7 +29,7 @@ Plug 'beloglazov/vim-textobj-quotes'
 " Navigation
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'phaazon/hop.nvim'
 
 " Git
@@ -50,6 +50,8 @@ Plug 'klen/nvim-config-local', {'branch': 'main'}
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+Plug 'mrjones2014/dash.nvim', { 'do': 'make install' }
 
 call plug#end()
 
