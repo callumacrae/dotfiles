@@ -20,4 +20,8 @@ if [[ `uname` == 'Darwin' ]]; then
 	# Link Karabiner config
 	[ -d ~/.config/karabiner ] && mv ~/.config/karabiner{,_old}
 	ln -s ${DOTFILES}/misc/karabiner ~/.config/karabiner
+
+	brew install --cask rectangle
+	[ -d ~/Library/Preferences/com.knollsoft.Rectangle.plist ] && mv ~/Library/Preferences/com.knollsoft.Rectangle.plist{,_old}
+	ln -s ${DOTFILES}/misc/rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
 fi

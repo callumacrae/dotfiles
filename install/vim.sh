@@ -3,9 +3,9 @@
 # Only define if not already defined
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/.dotfiles"
 
-[ -x "$(which brew)" ] && brew install neovim ccls clang-format lua-language-server
+[ -x "$(which brew)" ] && brew install neovim ccls clang-format lua-language-server gh
 [ -x "$(which apt-get)" ] && sudo apt-get install -y vim neovim
-npm i -g typescript typescript-language-server vscode-langservers-extracted @volar/server tsun
+npm i -g typescript typescript-language-server vscode-langservers-extracted @volar/server tsun bash-language-server
 
 [ -f ~/.vimrc ] && mv ~/.vimrc ~/.vimrc_old
 ln -s ${DOTFILES}/vim/vimrc ~/.vimrc
