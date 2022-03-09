@@ -53,6 +53,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'mrjones2014/dash.nvim', { 'do': 'make install' }
 
+Plug 'folke/trouble.nvim', {'branch': 'main'}
+
 call plug#end()
 
 for f in split(glob('~/.dotfiles/vim/config/plugin-config/*.{vim,lua}'), "\n")
@@ -82,6 +84,8 @@ command! CpPath let @+=@%
 " Fix performance issue with vim-vue https://github.com/posva/vim-vue#vim-slows-down-when-using-this-plugin-how-can-i-fix-that
 " let g:vue_pre_processors = ['scss', 'typescript']
 let g:vue_pre_processors = 'detect_on_enter'
+
+command! Bonly %bd|e#
 
 lua << EOF
 vim.opt.colorcolumn = { 80, 100 }

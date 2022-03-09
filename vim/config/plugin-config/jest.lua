@@ -2,7 +2,7 @@
 local function run_jest(args)
   local cmd = vim.g.jest_cmd or 'npx jest'
   local c_file = vim.fn.getreg('%')
-  vim.fn.VimuxRunCommand(cmd .. ' --runTestsByPath ' .. c_file .. ' ' .. args)
+  vim.fn.VimuxRunCommand(cmd .. ' --runTestsByPath ' .. c_file .. ' --json --outputFile .jest-results ' .. args)
 end
 
 function _G.jest_file(args)
@@ -39,6 +39,23 @@ function _G.jest_single(args)
   vim.fn.winrestview(view)
 end
 
+-- Kinda crappy way of getting jest failures into quickfix list - atm only does
+-- files, not line numbers or number of failures. It's mostly for then running
+-- :JestFile on.
+function _G.jest_quickfix()
+  local cwd_length = string.len(vim.fn.getcwd()) + 1
+  local files = vim.fn.systemlist('cat .jest-results | jq --raw-output ".testResults[] | select(.status == \\"failed\\") | .name[' .. cwd_length .. ':]"')
+
+  local t = {}
+  for _, filename in ipairs(files) do
+    table.insert(t, { filename = filename })
+  end
+
+  vim.fn.setqflist({}, ' ', { title = "Jest Errors", items = t })
+  vim.cmd('copen | cc 1') -- I'm sure there's a better way of doing this lol
+end
+
 vim.cmd('command! -nargs=? JestFile :call v:lua.jest_file(<f-args>)')
 vim.cmd('command! -nargs=? JestSingle :call v:lua.jest_single(<f-args>)')
+vim.cmd('command! JestQf :call v:lua.jest_quickfix()')
 

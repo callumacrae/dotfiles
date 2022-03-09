@@ -71,7 +71,7 @@ set -g @pomodoro_on "#[fg=brightred] "
 set -g @pomodoro_complete "#[fg=brightgreen] "
 set -g @pomodoro_notifications 'on'
 
-set -g @route_to_ping "vultr.net"   # Use a UK based site to ping
+set -g @route_to_ping "1.1.1.1"
 set -g @online_icon "#[fg=cyan]"
-set -g @offline_icon "#[fg=brightred]"
+set -g @offline_icon "#[fg=red]"
 set -g status-interval 2
