@@ -1,4 +1,17 @@
 local fzf = require "fzf-lua"
+local actions = require "fzf-lua.actions"
+
+fzf.setup({
+  actions = {
+    files = {
+      ["default"]     = actions.file_edit_or_qf,
+      ["ctrl-x"]      = actions.file_split,
+      ["ctrl-v"]      = actions.file_vsplit,
+      ["ctrl-t"]      = actions.file_tabedit,
+      ["alt-q"]       = actions.file_sel_to_qf,
+    }
+  }
+})
 
 function _G.FzfFilesWithQuery(query)
   fzf.files({ fzf_opts = { ['--query'] = query } })

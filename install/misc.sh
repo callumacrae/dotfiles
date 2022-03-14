@@ -22,6 +22,6 @@ if [[ `uname` == 'Darwin' ]]; then
 	ln -s ${DOTFILES}/misc/karabiner ~/.config/karabiner
 
 	brew install --cask rectangle
-	[ -d ~/Library/Preferences/com.knollsoft.Rectangle.plist ] && mv ~/Library/Preferences/com.knollsoft.Rectangle.plist{,_old}
+	[ -f ~/Library/Preferences/com.knollsoft.Rectangle.plist ] && mv ~/Library/Preferences/com.knollsoft.Rectangle.plist{,_old}
 	ln -s ${DOTFILES}/misc/rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
 fi

@@ -30,9 +30,9 @@ prefix_highlight="#{?client_prefix,#[fg=$xgray1]#[bg=brightwhite] ^A #[default] 
 battery_status="#{battery_color_charge_fg}#[bg=$xgray3]#{battery_icon_charge} #{battery_percentage}#{battery_icon_status}"
 cpu_load="#(~/.dotfiles/tmux/status/cpu-load.sh)"
 audio_status="#(~/.dotfiles/tmux/status/audio-status.sh)"
-next_event="#(~/.dotfiles/tmux/status/next-event.sh)"
+next_event="#(~/.dotfiles/tmux/status/next-event-2)"
 notifications="#(~/.dotfiles/tmux/status/notifications-2.sh)"
-set -g status-right "${prefix_highlight}#[default]${cpu_load} #[fg=brightwhite,bg=$xgray3] #{pomodoro_status}#{online_status}  #[fg=brightwhite]${audio_status}  ${battery_status}#[fg=brightwhite]${next_event} ${notifications}#[fg=brightwhite,bg=$xgray5,nobold] %H:%M | %F "
+set -g status-right "${prefix_highlight}#[default]${cpu_load} #[fg=brightwhite,bg=$xgray3] #{online_status}  #[fg=brightwhite]${audio_status}  ${battery_status}#[fg=brightwhite]${next_event} ${notifications}#[fg=brightwhite,bg=$xgray5,nobold] %H:%M | %F "
 set -g status-right-length 90
 
 set -g @batt_color_charge_primary_tier8 brightgreen
@@ -67,11 +67,7 @@ set -g @batt_icon_status_discharging " "
 set -g @batt_icon_status_attached " "
 set -g @batt_icon_status_unknown " "
 
-set -g @pomodoro_on "#[fg=brightred] "
-set -g @pomodoro_complete "#[fg=brightgreen] "
-set -g @pomodoro_notifications 'on'
-
 set -g @route_to_ping "1.1.1.1"
 set -g @online_icon "#[fg=cyan]"
 set -g @offline_icon "#[fg=red]"
-set -g status-interval 2
+set -g status-interval 5

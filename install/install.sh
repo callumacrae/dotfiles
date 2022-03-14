@@ -11,6 +11,8 @@
 . $DOTFILES/install/irssi.sh
 . $DOTFILES/install/misc.sh
 
+make
+
 unset DOTFILES # Don't mess up the PS1
 
 echo "Installed. Exit and come back"

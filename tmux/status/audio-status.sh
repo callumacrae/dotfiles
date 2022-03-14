@@ -8,7 +8,7 @@ device=$(system_profiler SPAudioDataType -detailLevel mini -timeout 1 -xml |
   							/following-sibling::string[1]
   							/text()')
 
-if [ -z $device ]; then
+if [[ -z $device ]]; then
   echo "#[fg=red]ﱝ"
   exit 0
 fi
