@@ -29,7 +29,7 @@ set -g status-right-style fg=brightwhite,bg=$xgray1
 prefix_highlight="#{?client_prefix,#[fg=$xgray1]#[bg=brightwhite] ^A #[default] ,#{?pane_in_mode,#[default]#[fg=white]#[bold]#[bg=blue] COPY #[default] ,}}"
 battery_status="#{battery_color_charge_fg}#[bg=$xgray3]#{battery_icon_charge} #{battery_percentage}#{battery_icon_status}"
 cpu_load="#(~/.dotfiles/tmux/status/cpu-load.sh)"
-audio_status="#(~/.dotfiles/tmux/status/audio-status.sh)"
+audio_status="#(~/.dotfiles/tmux/status/audio-status-2)"
 next_event="#(~/.dotfiles/tmux/status/next-event-2)"
 notifications="#(~/.dotfiles/tmux/status/notifications-2.sh)"
 set -g status-right "${prefix_highlight}#[default]${cpu_load} #[fg=brightwhite,bg=$xgray3] #{online_status}  #[fg=brightwhite]${audio_status}  ${battery_status}#[fg=brightwhite]${next_event} ${notifications}#[fg=brightwhite,bg=$xgray5,nobold] %H:%M | %F "
