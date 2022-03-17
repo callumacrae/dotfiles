@@ -3,6 +3,7 @@ local Trouble = require('trouble')
 Trouble.setup {
   icons = false,
   padding = false,
+  mode = "document_diagnostics",
   auto_open = false, -- too annoying, replaced by autocmd below
   auto_close = false
 }
@@ -17,7 +18,7 @@ vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", {silent = 
 function _G.trouble_if_trouble()
   require("trouble.providers").get(vim.api.nvim_get_current_win(), vim.api.nvim_get_current_buf(), function(results)
     if #results > 0 then
-      Trouble.open()
+      -- Trouble.open()
     else
       Trouble.close()
     end
@@ -30,3 +31,6 @@ vim.api.nvim_command([[
   autocmd BufWritePost * :call v:lua.trouble_if_trouble()
   augroup END
 ]])
+
+vim.api.nvim_set_keymap("n", "[t", "<cmd>lua require(\"trouble\").previous({ skip_groups = true, jump = true })<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "]t", "<cmd>lua require(\"trouble\").next({ skip_groups = true, jump = true })<CR>", { silent = true })

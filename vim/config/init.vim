@@ -53,7 +53,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'mrjones2014/dash.nvim', { 'do': 'make install' }
 
-Plug 'folke/trouble.nvim', {'branch': 'main'}
+Plug 'bellini666/trouble.nvim', {'branch': 'main'}
 
 call plug#end()
 
@@ -75,9 +75,10 @@ nmap <leader>l yssfconsole.log<CR>
 " wrap contents of function in JSON.parse(JSON.stringify())
 nmap <leader>sp ysi))iJSON.stringify<esc>ysi))iJSON.parse<esc>
 
-" is there a nicer way to do this?
-nnoremap [t vato<Esc>
-nnoremap ]t vat<Esc>
+" " is there a nicer way to do this?
+" " t = tag
+" nnoremap [t vato<Esc>
+" nnoremap ]t vat<Esc>
 
 command! CpPath let @+=@%
 

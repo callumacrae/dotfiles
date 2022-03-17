@@ -9,6 +9,7 @@
 . $DOTFILES/install/vim.sh # depends on npm being installed
 . $DOTFILES/install/node.sh
 . $DOTFILES/install/irssi.sh
+. $DOTFILES/install/htop.sh #depends on git being installed
 . $DOTFILES/install/misc.sh
 
 make

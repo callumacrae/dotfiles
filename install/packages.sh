@@ -5,13 +5,13 @@
 
 if [[ -x `which apt-get` ]]; then
 	sudo apt-get update
-	sudo apt-get install -y ack-grep silversearcher-ag autojump htop fzf
+	sudo apt-get install -y ack-grep silversearcher-ag autojump fzf
 fi
 
 if [[ `uname` == 'Darwin' ]]; then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-	brew install ack the_silver_searcher autojump htop wget tree fzf
+	brew install ack the_silver_searcher autojump wget tree fzf
 fi
 
 [ -f ~/.fzf.zsh ] && mv ~/.fzf.zsh ~/.fzf.zsh_old
