@@ -13,16 +13,16 @@ let events = store.events(matching: predicate)
 
 var nextEvent: EKEvent? = nil
 for event in events {
-    if (event.isAllDay) {
+    if event.isAllDay {
         continue
     }
 
-    if (nextEvent == nil) {
+    if nextEvent == nil {
         nextEvent = event
         continue
     }
 
-    if (event.compareStartDate(with: nextEvent!) == ComparisonResult.orderedAscending) {
+    if event.compareStartDate(with: nextEvent!) == ComparisonResult.orderedAscending {
         nextEvent = event
     }
 }
@@ -46,7 +46,7 @@ if nextEvent != nil, let title = nextEvent!.title, let startDate = nextEvent!.st
         }
 
         var truncatedTitle = title
-        if (title.count > truncateTo) {
+        if title.count > truncateTo {
             let index = title.index(title.startIndex, offsetBy: truncateTo - 2)
             truncatedTitle = String(title[...index]) + "…"
         }

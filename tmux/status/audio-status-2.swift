@@ -10,13 +10,13 @@ let isHeadphones = name.contains("AirPods") || name.contains("Crossfade")
 let isMuted = getDeviceVolume(deviceId: deviceId) == 0.0
 
 if isHeadphones && isMuted {
-  print("ﳌ")
+    print("ﳌ")
 } else if isHeadphones {
-  print("")
+    print("")
 } else if isMuted {
-	print("ﱝ")
+    print("ﱝ")
 } else {
-  print("")
+    print("")
 }
 
 func getDefaultDeviceId() -> AudioDeviceID {
