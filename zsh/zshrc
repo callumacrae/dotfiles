@@ -1,5 +1,5 @@
 # Source all *.zsh files in this dir
-for file in ~/.dotfiles/zsh/*.zshrc
+for file in ~/.dotfiles/zsh/*.zsh{rc,}
 	do source $file
 done
 

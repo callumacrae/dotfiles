@@ -4,7 +4,8 @@ require('dash').setup({
   file_type_keywords = {
     javascript = { 'js', 'node' },
     typescript = { 'js', 'ts', 'node' },
-    vue = { 'vue', 'js', 'ts', 'css' }
+    vue = { 'vue', 'js', 'ts', 'css' },
+    swift = { 'apple' },
   }
 })
 

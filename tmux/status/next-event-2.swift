@@ -45,13 +45,17 @@ if nextEvent != nil, let title = nextEvent!.title, let startDate = nextEvent!.st
             color = "#[fg=yellow] "
         }
 
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "HH:mm"
+        let time = dateFormat.string(from: startDate)
+
         var truncatedTitle = title
         if title.count > truncateTo {
             let index = title.index(title.startIndex, offsetBy: truncateTo - 2)
             truncatedTitle = String(title[...index]) + "…"
         }
 
-        print(color + icon + truncatedTitle)
+        print(color + icon + time + " " + truncatedTitle)
     } else {
         print(icon)
     }

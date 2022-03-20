@@ -31,7 +31,7 @@ local list = {
   {key = "<C-t>", action = "tabnew"},
   {key = "<C-k>", action = "prev_sibling"},
   {key = "<C-j>", action = "next_sibling"},
-  {key = { "<C-h>", "<C-p>" }, action = "parent_node"},
+  {key = "<C-h>", action = "parent_node"},
   {key = "<Tab>", action = "preview"},
   {key = "K", action = "first_sibling"},
   {key = "J", action = "last_sibling"},
