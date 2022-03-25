@@ -1,51 +1,34 @@
 [ -x "$(which hub)" ] && alias git=hub
 fpath=(~/.zsh $fpath)
 
-ghn_raw() {
-	PR_OPEN=""
-	PR_MERGED=""
-	ISSUE=""
-
-	gh api notifications -q '
-		def colors: {
-			"reset": "\033[0m", "dim": "\033[2m", "green": "\033[0;32m", "white": "\033[1;37m"
-		};
-		map(
-			colors.dim + .id + " " + colors.reset + colors.green + .repository.full_name
-				+ " " + colors.white + .subject.title + colors.reset + colors.dim
-				+ "(" + .reason + ")" + colors.reset
-		)
-			| join("\n")'
-}
-
-# this could probably use graphql to save a request?
-ghn_open() {
-	thread_url=$(gh api notifications/threads/{1} -q ".subject.url[23:]")
-	pr_url=$(gh api "${thread_url}" -q ".html_url")
-	open "${pr_url}?notifications_query=is%3Aunread"
-}
-
-ghn_mark_read() {
-	gh api -X PATCH notifications/threads/{1}
-}
+# todo - zsh specific
+BASEDIR=$(dirname "${(%):-%x}")
 
 # TODO LIST:
-# - performance improvements
 # - quit when zero notifications
-# - show status: e.g. merged, unmerged (icon? :D)
+# - multi-select?
 ghn() {
 	[ ! -x "$(which gh)" ] && echo "ghn relies on gh" && return 1
 	[ ! -x "$(which fzf)" ] && echo "ghn relies on fzf" && return 1
 
-	# export -f isn't supported in ZSH D:
-	notifications_cmd="$(typeset -f ghn_raw | sed '1,1d;$d')"
-	open_cmd="$(typeset -f ghn_open | sed '1,1d;$d')"
-	read_cmd="$(typeset -f ghn_mark_read | sed '1,1d;$d')"
+	$BASEDIR/git_scripts/ghn_raw.sh | fzf \
+		--bind "enter:execute-silent($BASEDIR/git_scripts/ghn_open.sh {1})+reload:$BASEDIR/git_scripts/ghn_raw.sh" \
+		--bind "ctrl-t:execute-silent($BASEDIR/git_scripts/ghn_open.sh {1})+reload:$BASEDIR/git_scripts/ghn_raw.sh" \
+		--bind "ctrl-x:execute-silent($BASEDIR/git_scripts/ghn_mark_read.sh {1})+reload:$BASEDIR/git_scripts/ghn_raw.sh" \
+		--bind "ctrl-r:reload:$BASEDIR/git_scripts/ghn_raw.sh" \
+		--header 'enter: open in browser, ctrl+x: mark as read, ctrl+r: reload, esc: exit' \
+		--ansi --exit-0
+}
 
-	ghn_raw | fzf \
-		--bind "enter:execute-silent(${open_cmd})+reload:${notifications_cmd}" \
-		--bind "ctrl-x:execute-silent(${read_cmd})+reload:${notifications_cmd}" \
-		--bind "ctrl-r:reload:${notifications_cmd}" \
-		--header 'enter: open, ctrl+x: mark as read, ctrl+r: reload, esc: exit' \
-		--ansi
+ghpr() {
+	[ ! -x "$(which gh)" ] && echo "ghpr relies on gh" && return 1
+	[ ! -x "$(which fzf)" ] && echo "ghpr relies on fzf" && return 1
+
+	$BASEDIR/git_scripts/ghpr_raw.sh \
+		| fzf \
+				--bind "ctrl-t:execute-silent(gh pr view {1} --web)"  \
+				--header 'enter: checkout, ctrl+t: open in browser, esc: exit' \
+				--ansi \
+		| awk 'NF>1{print $NF}' \
+		| xargs git checkout
 }

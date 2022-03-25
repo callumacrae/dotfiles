@@ -13,5 +13,4 @@ zstyle ':prezto:load' pmodule \
 zstyle ':prezto:*:*' color 'yes'
 zstyle ':prezto:module:prompt' theme 'pure'
 zstyle ':prompt:pure:prompt:success' color '242'
-zstyle ':prezto:module:editor' key-bindings 'vi'
 zstyle ':prezto:module:editor' dot-expansion 'yes'

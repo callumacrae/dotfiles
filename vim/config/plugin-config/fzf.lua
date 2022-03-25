@@ -13,6 +13,8 @@ fzf.setup({
   }
 })
 
+fzf.register_ui_select()
+
 function _G.FzfFilesWithQuery(query)
   fzf.files({ fzf_opts = { ['--query'] = query } })
 end
@@ -24,9 +26,11 @@ vim.api.nvim_set_keymap('n', '<c-p><c-g>', "<cmd>NvimTreeClose<CR><cmd>lua requi
 
 vim.api.nvim_set_keymap('n', '<leader>gf', "yiq<cmd>lua _G.FzfFilesWithQuery(vim.fn.getreg('\"'))<CR>", { silent = true })
 vim.api.nvim_set_keymap('v', '<leader>gf', "y<cmd>lua _G.FzfFilesWithQuery(vim.fn.getreg('\"'))<CR>", { silent = true })
+vim.api.nvim_set_keymap('v', '<c-p><c-f>', "y<cmd>lua _G.FzfFilesWithQuery(vim.fn.getreg('\"'))<CR>", { silent = true })
 
 vim.api.nvim_set_keymap('n', '<leader>*', "<cmd>lua require('fzf-lua').grep_cword()<CR>", { silent = true })
 vim.api.nvim_set_keymap('v', '<leader>*', "<cmd>lua require('fzf-lua').grep_visual()<CR>", { silent = true })
+vim.api.nvim_set_keymap('v', '<c-p><c-g>', "<cmd>lua require('fzf-lua').grep_visual()<CR>", { silent = true })
 
 -- todo:
 -- - Command to run command from specific directory from nvim-tree

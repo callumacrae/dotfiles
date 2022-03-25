@@ -25,7 +25,7 @@ vim.g.nvim_tree_icons = {
 }
 
 local list = {
-  {key = "o", action = "edit"},
+  {key = {"o", "<CR>"}, action = "edit"},
   {key = "<C-v>", action = "vsplit"},
   {key = "<C-x>", action = "split"},
   {key = "<C-t>", action = "tabnew"},
