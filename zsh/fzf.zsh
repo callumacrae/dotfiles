@@ -6,6 +6,11 @@ fi
 
 # Use ag to respect gitignore
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_OPTS='--no-mouse
+    --bind "ctrl-u:preview-half-page-up"
+    --bind "ctrl-d:preview-half-page-down"
+    --bind "shift-up:preview-top"
+    --bind "shift-down:preview-bottom"'
 
 # Auto-completion
 # ---------------

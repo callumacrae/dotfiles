@@ -19,6 +19,7 @@ rest_data=$(gh api notifications --paginate -q '
 
 # loooooooool
 # github pls give us a notifications graphql api pls
+# todo - double check there's no vulnerability here
 query=$(echo $rest_data | jq -r '"{" + (map(
 	((.owner + .repo) | gsub("-"; "")) + (.number | tostring) + ": repository(owner: \"" + .owner + "\", name: \"" + .repo + "\") {
 		issueOrPullRequest(number: " + (.number | tostring) + ") {
