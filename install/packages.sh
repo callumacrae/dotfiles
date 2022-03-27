@@ -11,7 +11,7 @@ fi
 if [[ `uname` == 'Darwin' ]]; then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-	brew install ack the_silver_searcher autojump wget tree fzf
+	brew install ack the_silver_searcher autojump wget tree fzf himalaya w3m
 fi
 
 [ -f ~/.fzf.zsh ] && mv ~/.fzf.zsh ~/.fzf.zsh_old
