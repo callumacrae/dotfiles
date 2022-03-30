@@ -22,11 +22,17 @@ source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 
 _fzf_complete_git() {
     ARGS="$@"
-    local branches
-    branches=$(git branch -vv --all)
     if [[ $ARGS == 'git checkout'* ]]; then
-        _fzf_complete --reverse --multi -- "$@" < <(
+        local branches
+        branches=$(git branch -v --color=always)
+        _fzf_complete --reverse --multi --ansi -- "$@" < <(
             echo $branches
+        )
+    elif [[ $ARGS == 'git revert'* ]]; then
+        local commits
+        commits=$(git log --pretty='format:%C(auto)%h %s %C(dim)%ad%Creset' --date=relative --color=always)
+        _fzf_complete --reverse --multi --ansi -- "$@" < <(
+            echo $commits
         )
     else
         eval "zle ${fzf_default_completion:-expand-or-complete}"
