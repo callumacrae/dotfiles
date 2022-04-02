@@ -1,3 +1,35 @@
+vim.g.coq_settings = {
+  auto_start = 'shut-up',
+  completion = {
+    always = false
+  },
+  display = {
+    ghost_text = {
+      enabled = false
+    },
+    pum = {
+      fast_close = false
+    },
+    icons = {
+      mode = "none"
+    }
+  },
+  keymap = {
+    recommended = false,
+    pre_select = true,
+    jump_to_mark = '',
+    manual_complete = '<c-n>'
+  },
+  limits = {
+    completion_manual_timeout = 0.088
+  },
+  clients = {
+    snippets = {
+      warn = {}
+    }
+  }
+}
+
 local configs = require 'lspconfig.configs'
 local util = require 'lspconfig.util'
 local nvim_lsp = require 'lspconfig'
@@ -57,11 +89,3 @@ for _, lsp in ipairs(servers) do
     root_dir = util.root_pattern('.git'), -- package.json not accurate for monorepos
   }))
 end
-
-vim.g.coq_settings = {
-  auto_start = true,
-  keymap = {
-    pre_select = true,
-    jump_to_mark = ''
-  }
-}
