@@ -3,17 +3,18 @@
 # todo - make this work in bash
 
 rest_data=$(gh api notifications --paginate -q '
-	reduce .[] as $item ({}; . + {
-		($item.subject.url | split("/") | (((.[-4] + .[-3]) | gsub("-"; "")) + .[-1])): {
-			threadId: $item.id | tonumber,
-			number: $item.subject.url | split("/")[-1] | tonumber,
-			title: $item.subject.title,
-			owner: $item.repository.owner.login,
-			repo: $item.repository.name,
-			reason: $item.reason,
-			updated_at: $item.updated_at
-		}
-	})')
+	map(select(.subject.url))
+	| reduce .[] as $item ({}; . + {
+			($item.subject.url | split("/") | (((.[-4] + .[-3]) | gsub("-"; "")) + .[-1])): {
+				threadId: $item.id | tonumber,
+				number: $item.subject.url | split("/")[-1] | tonumber,
+				title: $item.subject.title,
+				owner: $item.repository.owner.login,
+				repo: $item.repository.name,
+				reason: $item.reason,
+				updated_at: (now - ($item.updated_at | fromdate))
+			}
+		})')
 
 [[ $rest_data == "{}" ]] && exit 0
 
@@ -51,17 +52,18 @@ echo $data | jq -r '
 			else (if .state == "OPEN" then colors.green else colors.red end) + ""
 		end;
 	def fuzzytime:
-		(now - (. | fromdate))
-			| if . < 60 then (. | round | tostring) + " seconds ago"
+		. | if . < 60 then (. | round | tostring) + " seconds ago"
 				elif . < 3600 then (. / 60 | round | tostring) + " minutes ago"
 				elif . < 3600 * 24 then (. / 60 / 24 | round | tostring) + " hours ago"
 				else (. / 60 / 24 / 7 | round | tostring) + " days ago"
 				end;
-	map(
-			colors.green + .owner + "/" + .repo + colors.reset
-			+ colors.dim + "#" + (.number | tostring) + colors.reset + "@@"
-			+ (. | icon) + " "
-			+ colors.white + .title + colors.reset + "@@"
-			+ colors.dim + .reason + " - " + (.updated_at | fuzzytime)
-	)
+	map(.)
+		| sort_by(.updated_at)
+		| map(
+				colors.green + .owner + "/" + .repo + colors.reset
+				+ colors.dim + "#" + (.number | tostring) + colors.reset + "@@"
+				+ (. | icon) + " "
+				+ colors.white + .title + colors.reset + "@@"
+				+ colors.dim + .reason + " - " + (.updated_at | fuzzytime)
+		)
 		| join("\n")' | column -t -s "@@"

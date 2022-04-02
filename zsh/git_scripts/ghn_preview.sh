@@ -3,5 +3,10 @@
 repo=${1%"#"*}
 number=${1#*"#"}
 
-# todo add support for pr view when https://github.com/cli/cli/issues/5354 fixed
-GH_FORCE_TTY=$FZF_PREVIEW_COLUMNS gh issue view --repo $repo $number --comments
+notif_type=$(cat $TMPDIR/ghn_cache_data.json | jq '.["'$1'" | gsub("/|-|#"; "")] | .type')
+if [ $notif_type = "PullRequest" ]; then
+	cmd="pr"
+else
+	cmd="issue"
+fi
+GH_FORCE_TTY=$FZF_PREVIEW_COLUMNS gh $cmd view --repo $repo $number --comments

@@ -91,19 +91,23 @@ mail() {
     --bind 'down:change-preview()+down' \
     --bind 'up:change-preview()+up' \
     --bind 'esc:change-preview()' \
-    --bind 'ctrl-n:execute:himalaya reply {1}' \
+    --bind 'ctrl-n:execute:himalaya --account "$(cat "'"${account_file}"'")" reply {1}' \
     --bind "ctrl-n:+reload:sleep 0.4; $search_query" \
-    --bind 'ctrl-a:execute:himalaya attachments {1}' \
+    --bind 'ctrl-a:execute:himalaya --account "$(cat "'"${account_file}"'")" attachments {1}' \
+    --bind 'ctrl-s:execute-silent:himalaya --account "$(cat "'"${account_file}"'")" flag add {1} \\seen' \
+    --bind "ctrl-s:+reload:sleep 0.1; $search_query" \
+    --bind 'ctrl-x:execute-silent:himalaya --account "$(cat "'"${account_file}"'")" delete {1}' \
+    --bind "ctrl-x:+change-preview()+reload:sleep 0.1; $search_query" \
     --bind "ctrl-r:reload:$search_query" \
     --bind "change:change-preview()+reload:sleep 0.25; $search_query" \
     --bind 'ctrl-q:change-prompt(Query > )+execute-silent:touch $TMPDIR/fzhim_qry' \
     --bind 'ctrl-f:change-prompt(> )+execute-silent:rm -f $TMPDIR/fzhim_qry' \
     --bind "ctrl-h:change-preview()+execute:$account_previous" \
-    --bind "ctrl-h:+reload:$search_query" \
+    --bind "ctrl-h:+first+reload:$search_query" \
     --bind "ctrl-l:change-preview()+execute:$account_next" \
-    --bind "ctrl-l:+reload:$search_query" \
+    --bind "ctrl-l:+first+reload:$search_query" \
     --preview-window "top" \
-    --header "enter: read email, c-n: reply, c-a: attachments, c-q: query mode, c-f: normal mode, c-r: reload, c-c: exit" \
+    --header "enter: read email, c-n: reply, [a]ttachments, mark [s]een, c-x: delete, [q]uery mode, c-f: normal mode, [r]eload, c-c: exit" \
     --header-lines $(( accounts_count > 1 ? 2 : 1 )) \
     --ansi
 
