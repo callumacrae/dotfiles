@@ -7,7 +7,6 @@ Plug 'srcery-colors/srcery-vim'
 
 " Code intelligence and highlighting
 Plug 'neovim/nvim-lspconfig'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'sheerun/vim-polyglot'
@@ -25,6 +24,13 @@ Plug 'fvictorio/vim-textobj-backticks'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'beloglazov/vim-textobj-quotes'
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip' " required for snippets
+Plug 'hrsh7th/vim-vsnip'
+Plug 'ray-x/lsp_signature.nvim'
 
 " Navigation
 Plug 'kyazdani42/nvim-tree.lua'
@@ -53,7 +59,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'mrjones2014/dash.nvim', { 'do': 'make install' }
 
-Plug 'bellini666/trouble.nvim', {'branch': 'main'}
+" Plug 'bellini666/trouble.nvim', {'branch': 'main'}
 
 call plug#end()
 

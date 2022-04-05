@@ -24,6 +24,8 @@ vim.api.nvim_set_keymap('n', '<c-p><c-r>', "<cmd>NvimTreeClose<CR><cmd>lua requi
 vim.api.nvim_set_keymap('n', '<c-p><c-f>', "<cmd>NvimTreeClose<CR><cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 vim.api.nvim_set_keymap('n', '<c-p><c-g>', "<cmd>NvimTreeClose<CR><cmd>lua require('fzf-lua').grep_project()<CR>", { silent = true })
 
+vim.api.nvim_set_keymap('n', '<leader>gr', "<cmd>NvimTreeClose<CR><cmd>lua require('fzf-lua').lsp_references()<CR>", { silent = true })
+
 vim.api.nvim_set_keymap('n', '<leader>gf', "yiq<cmd>lua _G.FzfFilesWithQuery(vim.fn.getreg('\"'))<CR>", { silent = true })
 vim.api.nvim_set_keymap('v', '<leader>gf', "y<cmd>lua _G.FzfFilesWithQuery(vim.fn.getreg('\"'))<CR>", { silent = true })
 vim.api.nvim_set_keymap('v', '<c-p><c-f>', "y<cmd>lua _G.FzfFilesWithQuery(vim.fn.getreg('\"'))<CR>", { silent = true })

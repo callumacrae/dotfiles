@@ -1,39 +1,32 @@
-vim.g.coq_settings = {
-  auto_start = 'shut-up',
-  completion = {
-    always = false
-  },
-  display = {
-    ghost_text = {
-      enabled = false
-    },
-    pum = {
-      fast_close = false
-    },
-    icons = {
-      mode = "none"
-    }
-  },
-  keymap = {
-    recommended = false,
-    pre_select = true,
-    jump_to_mark = '',
-    manual_complete = '<c-n>'
-  },
-  limits = {
-    completion_manual_timeout = 0.088
-  },
-  clients = {
-    snippets = {
-      warn = {}
-    }
-  }
-}
-
 local configs = require 'lspconfig.configs'
 local util = require 'lspconfig.util'
 local nvim_lsp = require 'lspconfig'
-local coq = require "coq"
+local cmp = require 'cmp'
+
+cmp.setup({
+  completion = {
+    -- autocomplete = false
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+  }),
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+})
+
+-- vim.api.nvim_set_keymap('', '<c-n>', '<cmd>lua require("cmp").complete()<CR>', { noremap = true })
+
+-- cmp.setup.cmdline(':', {
+--   sources = cmp.config.sources({
+--     { name = 'path' }
+--   })
+-- })
+
+require "lsp_signature".setup({})
 
 if not configs.glsl then
   configs.glsl = {
@@ -48,6 +41,117 @@ end
 
 nvim_lsp.sumneko_lua.document_config.default_config.settings.Lua.diagnostics = {
   globals = {'vim'}
+}
+
+-- Manually set up volar with multiple servers
+-- https://github.com/johnsoncodehk/volar/discussions/606
+local function on_new_config(new_config, new_root_dir)
+  local function get_typescript_server_path(root_dir)
+    local project_root = util.find_node_modules_ancestor(root_dir)
+    return project_root and (util.path.join(project_root, 'node_modules', 'typescript', 'lib', 'tsserverlibrary.js'))
+      or ''
+  end
+
+  if
+    new_config.init_options
+    and new_config.init_options.typescript
+    and new_config.init_options.typescript.serverPath == ''
+  then
+    new_config.init_options.typescript.serverPath = get_typescript_server_path(new_root_dir)
+  end
+end
+
+local volar_cmd = {'vue-language-server', '--stdio'}
+local volar_root_dir = util.root_pattern '.git'
+
+configs.volar_api = {
+  default_config = {
+    cmd = volar_cmd,
+    root_dir = volar_root_dir,
+    on_new_config = on_new_config,
+    filetypes = { 'vue'},
+    -- If you want to use Volar's Take Over Mode (if you know, you know)
+    --filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    init_options = {
+      typescript = {
+        serverPath = ''
+      },
+      languageFeatures = {
+        implementation = true, -- new in @volar/vue-language-server v0.33
+        references = true,
+        definition = true,
+        typeDefinition = true,
+        callHierarchy = true,
+        hover = true,
+        rename = true,
+        renameFileRefactoring = true,
+        signatureHelp = true,
+        codeAction = true,
+        workspaceSymbol = true,
+        completion = {
+          defaultTagNameCase = 'both',
+          defaultAttrNameCase = 'kebabCase',
+          getDocumentNameCasesRequest = false,
+          getDocumentSelectionRequest = false,
+        },
+      }
+    },
+  }
+}
+
+configs.volar_doc = {
+  default_config = {
+    cmd = volar_cmd,
+    root_dir = volar_root_dir,
+    on_new_config = on_new_config,
+
+    filetypes = { 'vue'},
+    -- If you want to use Volar's Take Over Mode (if you know, you know):
+    --filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+    init_options = {
+      typescript = {
+        serverPath = ''
+      },
+      languageFeatures = {
+        implementation = true, -- new in @volar/vue-language-server v0.33
+        documentHighlight = true,
+        documentLink = true,
+        codeLens = { showReferencesNotification = true},
+        -- not supported - https://github.com/neovim/neovim/pull/15723
+        semanticTokens = false,
+        diagnostics = true,
+        schemaRequestService = true,
+      }
+    },
+  }
+}
+
+configs.volar_html = {
+  default_config = {
+    cmd = volar_cmd,
+    root_dir = volar_root_dir,
+    on_new_config = on_new_config,
+
+    filetypes = { 'vue'},
+    -- If you want to use Volar's Take Over Mode (if you know, you know), intentionally no 'json':
+    --filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    init_options = {
+      typescript = {
+        serverPath = ''
+      },
+      documentFeatures = {
+        selectionRange = true,
+        foldingRange = true,
+        linkedEditingRange = true,
+        documentSymbol = true,
+        -- not supported - https://github.com/neovim/neovim/pull/13654
+        documentColor = false,
+        documentFormatting = {
+          defaultPrintWidth = 100,
+        },
+      }
+    },
+  }
 }
 
 local opts = { noremap=true, silent=true }
@@ -77,15 +181,15 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'eslint', 'html', 'volar', 'glsl', 'sumneko_lua', 'bashls', 'sourcekit' }
+local servers = { 'tsserver', 'eslint', 'html', 'volar_api', 'volar_doc', 'volar_html', 'glsl', 'sumneko_lua', 'bashls', 'sourcekit' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
+  nvim_lsp[lsp].setup({
+    capabilities = capabilities,
     on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
     root_dir = util.root_pattern('.git'), -- package.json not accurate for monorepos
-  }))
+  })
 end
