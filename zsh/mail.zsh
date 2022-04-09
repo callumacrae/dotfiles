@@ -32,18 +32,18 @@ mail() {
         fi
         accounts_header+=" ${prefix}${account}\x1b[0m"
       done
-      echo "$accounts_header (ctrl-h / ctrl-l to switch)"
+      echo -e "$accounts_header (ctrl-h / ctrl-l to switch)"
     fi
 
     if [[ "{q}" = "'\'''\''" || "{q}" = "$(echo {)q}" ]]; then
-      script -t 0 -q /dev/null himalaya --account "${current_account}" list -s 100 --max-width $COLUMNS | tail -n +2
+      script -t 0 -q /dev/null himalaya --account "${current_account}" list -s 100 --max-width "'$(tput cols)'" | tail -n +2
     else
       if [[ -f "$TMPDIR/fzhim_qry" ]]; then
         query=$(eval "echo {q}")
       else
         query="OR OR SUBJECT {q} FROM {q} BODY {q}"
       fi
-      script -t 0 -q /dev/null himalaya --account "${current_account}" search -s 100 --max-width $COLUMNS $query | tail -n +2
+      script -t 0 -q /dev/null himalaya --account "${current_account}" search -s 100 --max-width "'$(tput cols)'" $query | tail -n +2
     fi
   '
 
@@ -58,9 +58,9 @@ mail() {
     IFS=$'\''\n'\'' accounts=($(echo "'"$(IFS=$'\n'; echo "${accounts[*]}")"'"))
     current_account=$(cat "'"${account_file}"'")
 
-    for i in {1..${#accounts[@]}}; do
+    for i in ${!accounts[@]}; do
       if [[ "${accounts[$i]}" = "${current_account}" ]]; then
-        if (( i > 1 )); then
+        if (( i > 0 )); then
           new_account="${accounts[$i - 1]}"
           echo $new_account >| '$account_file'
         fi
@@ -72,9 +72,9 @@ mail() {
     IFS=$'\''\n'\'' accounts=($(echo "'"$(IFS=$'\n'; echo "${accounts[*]}")"'"))
     current_account=$(cat "'"${account_file}"'")
 
-    for i in {1..${#accounts[@]}}; do
+    for i in ${!accounts[@]}; do
       if [[ "${accounts[$i]}" = "${current_account}" ]]; then
-        if (( i < ${#accounts[@]} )); then
+        if (( i < ${#accounts[@]} - 1 )); then
           new_account="${accounts[$i + 1]}"
           echo $new_account >| '$account_file'
         fi
@@ -82,7 +82,7 @@ mail() {
     done
   '
 
-  FZF_DEFAULT_COMMAND="$search_query" fzf \
+  SHELL=/bin/bash FZF_DEFAULT_COMMAND="$search_query" fzf \
     --disabled \
     --bind "enter:change-preview:$read_email" \
     --bind "enter:+reload:sleep 0.4; $search_query" \
@@ -102,7 +102,7 @@ mail() {
     --bind "change:change-preview()+reload:sleep 0.25; $search_query" \
     --bind 'ctrl-q:change-prompt(Query > )+execute-silent:touch $TMPDIR/fzhim_qry' \
     --bind 'ctrl-f:change-prompt(> )+execute-silent:rm -f $TMPDIR/fzhim_qry' \
-    --bind "ctrl-h:change-preview()+execute:$account_previous" \
+    --bind "ctrl-h:change-preview()+execute-silent:$account_previous" \
     --bind "ctrl-h:+first+reload:$search_query" \
     --bind "ctrl-l:change-preview()+execute:$account_next" \
     --bind "ctrl-l:+first+reload:$search_query" \

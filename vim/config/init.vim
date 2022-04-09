@@ -80,6 +80,7 @@ nmap <leader>l yssfconsole.log<CR>
 
 " wrap contents of function in JSON.parse(JSON.stringify())
 nmap <leader>sp ysi))iJSON.stringify<esc>ysi))iJSON.parse<esc>
+vmap <leader>sp S)ysa))iJSON.parse<esc>laJSON.stringify<esc>
 
 " " is there a nicer way to do this?
 " " t = tag

@@ -17,13 +17,13 @@ for event in events {
         continue
     }
 
-    if nextEvent == nil {
-        nextEvent = event
-        continue
-    }
-
-    if event.compareStartDate(with: nextEvent!) == ComparisonResult.orderedAscending {
-        nextEvent = event
+    if nextEvent == nil || event.compareStartDate(with: nextEvent!) == ComparisonResult.orderedAscending {
+        let email = event.calendar!.source.title
+        if event.attendees != nil, let selfAttendee = event.attendees!.first(where: { $0.name == email }) {
+            if selfAttendee.participantStatus != .declined {
+                nextEvent = event
+            }
+        }
     }
 }
 
