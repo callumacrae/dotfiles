@@ -1,3 +1,37 @@
+# An fzf script for using the himalaya email client. Current features:
+#
+# - List emails
+# - Search emails (using IMAP querying, not fzf)
+# - Read emails in preview window
+# - View attachments
+# - Mark email as read
+# - Delete email
+# - Reply to email
+# - Multi-account support
+#
+# Future features:
+#
+# - Read emails externally in w3m for interactive links
+# - Move view attachments, reply, other functionality to a prompt after reading
+#   externally to clean up UI
+#
+# Authored by Callum Macrae, released under MIT license.
+#
+# This file, despite the file extension, works in both bash and ZSH. My
+# recommended setup would be to source it from your bashrc/zshrc file and
+# run `mail` to call the function when needed.
+#
+# To run from fish, you'll need to add a bash/zsh shebang to the top of the
+# file, call the function from the bottom of the file, and run this file as a
+# script.
+#
+# Dependencies:
+#
+# - himalaya
+# - fzf
+# - jq
+# - w3m
+
 mail() {
   old_IFS=$IFS
 
