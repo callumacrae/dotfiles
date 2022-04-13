@@ -39,7 +39,9 @@ mail() {
   accounts=($(himalaya -o json accounts | jq -r 'map(.name) | join("\n")'))
   accounts_count="${#accounts[@]}"
 
-  account_file=$TMPDIR/fzhim_account
+  account_file="${TMPDIR:-/tmp}/fzhim_account"
+  query_file="${TMPDIR:-/tmp}/fzhim_qry"
+
   if [[ -f "$account_file" ]]; then
     current_account=$(cat "$account_file")
 
@@ -70,14 +72,20 @@ mail() {
     fi
 
     if [[ "{q}" = "'\'''\''" || "{q}" = "$(echo {)q}" ]]; then
-      script -t 0 -q /dev/null himalaya --account "${current_account}" list -s 100 --max-width "'$(tput cols)'" | tail -n +2
+      cmd="list"
+      query=""
     else
-      if [[ -f "$TMPDIR/fzhim_qry" ]]; then
+      cmd="search"
+      if [[ -f "'${query_file}'" ]]; then
         query=$(eval "echo {q}")
       else
         query="OR OR SUBJECT {q} FROM {q} BODY {q}"
       fi
-      script -t 0 -q /dev/null himalaya --account "${current_account}" search -s 100 --max-width "'$(tput cols)'" $query | tail -n +2
+    fi
+    if [[ `uname` == "Darwin" ]]; then
+      script -t 0 -q /dev/null himalaya --account "${current_account}" "$cmd" -s 100 --max-width "'$(tput cols)'" $query | tail -n +2
+    else
+      script -q -f -e --command "himalaya --account "${current_account}" "$cmd" -s 100 --max-width "'$(tput cols)'" $query" /dev/null | tail -n +2
     fi
   '
 
@@ -134,8 +142,8 @@ mail() {
     --bind "ctrl-x:+change-preview()+reload:sleep 0.1; $search_query" \
     --bind "ctrl-r:reload:$search_query" \
     --bind "change:change-preview()+reload:sleep 0.25; $search_query" \
-    --bind 'ctrl-q:change-prompt(Query > )+execute-silent:touch $TMPDIR/fzhim_qry' \
-    --bind 'ctrl-f:change-prompt(> )+execute-silent:rm -f $TMPDIR/fzhim_qry' \
+    --bind "ctrl-q:change-prompt(Query > )+execute-silent:touch $query_file" \
+    --bind "ctrl-f:change-prompt(> )+execute-silent:rm -f $query_file" \
     --bind "ctrl-h:change-preview()+execute-silent:$account_previous" \
     --bind "ctrl-h:+first+reload:$search_query" \
     --bind "ctrl-l:change-preview()+execute:$account_next" \
@@ -145,7 +153,7 @@ mail() {
     --header-lines $(( accounts_count > 1 ? 2 : 1 )) \
     --ansi
 
-  rm -f $TMPDIR/fzhim_qry
+  rm -f $query_file
 
   IFS=$old_IFS
 }
