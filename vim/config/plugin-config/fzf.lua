@@ -2,6 +2,12 @@ local fzf = require "fzf-lua"
 local actions = require "fzf-lua.actions"
 
 fzf.setup({
+  keymap = {
+    builtin = {
+      ["<c-d>"]       = "preview-page-down",
+      ["<c-u>"]       = "preview-page-up"
+    }
+  },
   actions = {
     files = {
       ["default"]     = actions.file_edit_or_qf,
