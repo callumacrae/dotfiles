@@ -32,6 +32,14 @@
 # - jq
 # - w3m
 
+preview_height() {
+	if (( LINES > 30 )); then
+		echo "80%"
+	else
+		echo "50%"
+	fi
+}
+
 mail() {
   old_IFS=$IFS
 
@@ -148,7 +156,7 @@ mail() {
     --bind "ctrl-h:+first+reload:$search_query" \
     --bind "ctrl-l:change-preview()+execute:$account_next" \
     --bind "ctrl-l:+first+reload:$search_query" \
-    --preview-window "top" \
+    --preview-window "top,$(preview_height)" \
     --header "enter: read email, c-n: reply, [a]ttachments, mark [s]een, c-x: delete, [q]uery mode, c-f: normal mode, [r]eload, c-c: exit" \
     --header-lines $(( accounts_count > 1 ? 2 : 1 )) \
     --ansi
