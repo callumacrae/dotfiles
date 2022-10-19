@@ -24,6 +24,7 @@ set nu
 autocmd WinLeave * :setlocal nornu
 autocmd WinEnter * :if !IsFloating() | setlocal rnu | endif
 autocmd WinNew * :if !IsFloating() | setlocal rnu | endif
+autocmd BufEnter * :if !IsFloating() | setlocal rnu | endif
 
 augroup vim help
 	autocmd!

@@ -59,3 +59,7 @@ vim.cmd('command! -nargs=? JestFile :call v:lua.jest_file(<f-args>)')
 vim.cmd('command! -nargs=? JestSingle :call v:lua.jest_single(<f-args>)')
 vim.cmd('command! JestQf :call v:lua.jest_quickfix()')
 
+vim.api.nvim_set_keymap('n', '<leader>jf', ":JestFile", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jfw', ":JestFile --watch", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>js', ":JestSingle", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jsw', ":JestSingle --watch", { silent = true })

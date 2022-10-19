@@ -59,10 +59,21 @@ g() {
 alias gp="git push"
 alias gpu="git push -u origin HEAD"
 alias gpf="git push --force-with-lease origin HEAD"
-alias gpr="git pr create --web"
+alias gpr="gh pr create --web"
+
+alias gf="git fetch"
+alias gfm="git pull"
+alias gfma="git pull --autostash"
 
 # using nvim for git commit so gc is available for checkout
 alias gc="git checkout"
+alias grh="git reset --hard HEAD"
+alias groh="git reset --hard origin/HEAD"
+
+# git checkout with --autostash-like functionality
+gca() {
+	git stash && git checkout $@ && git stash apply
+}
 
 _fzf_complete_gc() {
 	local branches=$(git branch -v --color=always)
@@ -76,9 +87,7 @@ _fzf_complete_gc_post() {
 _fzf_complete_g() {
 	ARGS="$@"
 	if [[ $ARGS == 'g revert'* ]]; then
-		local commits=$(
-			git log --pretty='format:%C(auto)%h %s %C(dim)%ad%Creset' --date=relative --color=always
-		)
+		local commits=$(glo)
 		_fzf_complete --reverse --multi --ansi -- "$@" < <(echo $commits)
 	else
 		eval "zle ${fzf_default_completion:-expand-or-complete}"
@@ -103,3 +112,17 @@ _fzf_complete_gsa() {
 _fzf_complete_gsa_post() {
 	awk '{print $1}'
 }
+
+alias gr="git rebase"
+alias gri="git rebase --interactive"
+alias grim="gf && gri origin/main"
+alias grm="gf && gr origin/main"
+alias grr="git rebase --continue" # using rr from vim-fugitive vs rc from alias.zsh
+alias grs="git rebase --skip"
+alias gra="git rebase --abort"
+
+alias gl="git log"
+alias glo="git log --pretty='format:%C(auto)%h %s %C(dim)%ad%Creset' --date=relative --color=always"
+alias gloh="glo | head"
+
+alias gcp="git cherry-pick"

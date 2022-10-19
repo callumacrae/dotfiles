@@ -1,29 +1,3 @@
-vim.g.nvim_tree_show_icons = {
-  git = 1,
-  folders = 1,
-  files = 1,
-  folder_arrows = 0
-}
-
-vim.g.nvim_tree_special_files = {}
-
-vim.g.nvim_tree_icons = {
-  default = ' ',
-  git = {
-    unstaged = "✹",
-    staged = "✚",
-    unmerged = "",
-    renamed = "➜",
-    untracked = "✭",
-    deleted = "✖",
-    ignored = "☒"
-  },
-  folder = {
-    default = "",
-    open = "",
-  }
-}
-
 local list = {
   {key = {"o", "<CR>"}, action = "edit"},
   {key = "<C-v>", action = "vsplit"},
@@ -67,7 +41,34 @@ require'nvim-tree'.setup {
         enable = false
       }
     }
-  }
+  },
+  renderer = {
+    special_files = {},
+    icons = {
+      show = {
+        git = true,
+        folder = true,
+        file = true,
+        folder_arrow = false
+      },
+      glyphs = {
+        default = ' ',
+        git = {
+          unstaged = "✹",
+          staged = "✚",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "✭",
+          deleted = "✖",
+          ignored = "☒"
+        },
+        folder = {
+          default = "",
+          open = "",
+        }
+      }
+    }
+  },
 }
 
 vim.api.nvim_set_keymap('n', '<leader>n', ':NvimTreeToggle<CR>', { silent = true })
