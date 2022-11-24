@@ -106,5 +106,7 @@ vim.opt.sidescrolloff = 20
 
 vim.opt.inccommand = 'nosplit'
 
+vim.opt.mouse = ''
+
 require('config-local').setup()
 EOF
