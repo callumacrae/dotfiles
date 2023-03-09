@@ -1,13 +1,12 @@
 " vim-tmux-navigator
 
 " Disable wrapping
-" https://github.com/christoomey/vim-tmux-navigator/pull/237
 let g:tmux_navigator_no_wrap = 1
 
 " vimux
 let g:VimuxHeight = "33"
 let g:VimuxOrientation = "h"
-let g:VimuxUseNearest = v:false
+let g:VimuxUseNearest = v:true
 let g:VimuxPromptString = "❯ "
 let g:VimuxRunnerName = "vimuxout"
 

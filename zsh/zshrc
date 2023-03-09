@@ -25,3 +25,7 @@ fi
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^e' edit-command-line
+
+# Stop pure from auto setting title. bad pure.
+# https://github.com/sindresorhus/pure/blob/2f13dea466466dde1ba844ba5211e7556f4ae2db/pure.zsh#L56
+prompt_pure_set_title(){}

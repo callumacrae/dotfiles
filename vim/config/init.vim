@@ -32,6 +32,8 @@ Plug 'hrsh7th/cmp-vsnip' " required for snippets
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/lsp_signature.nvim'
 
+Plug 'github/copilot.vim', {'branch': 'release'}
+
 " Navigation
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -44,7 +46,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 
 " tmux
-Plug 'callumacrae/vim-tmux-navigator' " includes https://github.com/christoomey/vim-tmux-navigator/pull/237
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'preservim/vimux'
 
 " Misc
