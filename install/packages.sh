@@ -9,7 +9,7 @@ if [[ -x `which apt-get` ]]; then
 fi
 
 if [[ `uname` == 'Darwin' ]]; then
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 	brew install ack the_silver_searcher autojump wget tree fzf himalaya w3m
 fi

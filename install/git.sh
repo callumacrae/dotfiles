@@ -22,5 +22,5 @@ fi
 ln -s ${DOTFILES}/misc/gitignore_global ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
 
-git config user.name "Callum Macrae"
-git config user.email "callum@macr.ae"
+git config --global user.name "Callum Macrae"
+git config --global user.email "callum@macr.ae"

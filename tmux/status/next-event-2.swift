@@ -4,6 +4,9 @@ import Darwin
 import EventKit
 
 let store = EKEventStore()
+// store.requestAccess(to: .event) { granted, error in
+// }
+
 let calendars = store.calendars(for: .event)
 
 let from = Date.init()
