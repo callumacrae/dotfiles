@@ -3,7 +3,7 @@
 # Only define if not already defined
 [[ -z $DOTFILES ]] && export DOTFILES="$HOME/.dotfiles"
 
-[ -x "$(which brew)" ] && brew install neovim ccls clang-format lua-language-server gh jq fd
+[ -x "$(which brew)" ] && brew install neovim ccls clang-format lua-language-server gh jq rg
 [ -x "$(which apt-get)" ] && sudo apt-get install -y vim neovim
 npm i -g typescript typescript-language-server vscode-langservers-extracted @volar/vue-language-server tsun bash-language-server graphql-language-service-cli
 
