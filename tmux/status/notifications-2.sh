@@ -40,7 +40,7 @@ office_hours=$(( week_day < 6 && hour >= 9 && hour < 18))
 notifications=""
 
 dock_notifications=$(osascript $CURRENT_DIR/notifications-dock.scpt)
-[[ "$dock_notifications" -gt 0 ]] && notifications="${notifications}  ${dock_notifications}"
+[[ "$dock_notifications" -gt 0 ]] && notifications="${notifications}  ${dock_notifications}"
 [ $office_hours -eq 1 ] &&
   github_notifications=$(gh api notifications -q 'map(select(.unread)) | length')
 [[ "$github_notifications" -gt 0 ]] && notifications="${notifications}  ${github_notifications}"
