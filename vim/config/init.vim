@@ -55,6 +55,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-rsi'
 Plug 'klen/nvim-config-local', {'branch': 'main'}
+Plug 'vim-test/vim-test'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
