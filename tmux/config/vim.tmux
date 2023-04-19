@@ -23,7 +23,7 @@ setw -g monitor-activity on
 set -g visual-activity on
 
 # vim-tmux-navigator config
-forward_programs="view|n?vim?|fzf"
+forward_programs="n?vim?|fzf"
 should_forward="ps -o state= -o comm= -t '#{pane_tty}' \
   | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?($forward_programs)(diff)?$'"
 bind -n 'C-h' if-shell "$should_forward" 'send-keys C-h' '%if "#{?pane_at_left,0,1}" select-pane -L %endif'

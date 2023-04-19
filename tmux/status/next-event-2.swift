@@ -43,8 +43,13 @@ if nextEvent != nil, let title = nextEvent!.title, let startDate = nextEvent!.st
 
     let minsUntil = startDate.timeIntervalSinceNow / 60
 
+    let dateFormat = DateFormatter()
+    dateFormat.dateFormat = "HH:mm"
+    let time = dateFormat.string(from: startDate)
+
     let icon = " "
     let truncateTo = 21
+
     if minsUntil < 60 {
         var color = ""
         if minsUntil <= 0 {
@@ -52,10 +57,6 @@ if nextEvent != nil, let title = nextEvent!.title, let startDate = nextEvent!.st
         } else if minsUntil <= 10 {
             color = "#[fg=yellow] "
         }
-
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "HH:mm"
-        let time = dateFormat.string(from: startDate)
 
         var truncatedTitle = title
         if title.count > truncateTo {
@@ -65,6 +66,6 @@ if nextEvent != nil, let title = nextEvent!.title, let startDate = nextEvent!.st
 
         print(color + icon + time + " " + truncatedTitle)
     } else {
-        print(icon)
+        print(icon + "#[fg=brightblack]" + time)
     }
 }
