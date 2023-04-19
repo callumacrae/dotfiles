@@ -42,10 +42,6 @@ if not configs.glsl then
   };
 end
 
-nvim_lsp.sumneko_lua.document_config.default_config.settings.Lua.diagnostics = {
-  globals = {'vim'}
-}
-
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -73,11 +69,11 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'eslint', 'html', 'volar', 'glsl', 'sumneko_lua', 'bashls', 'sourcekit', 'graphql', 'phpactor' }
+local servers = { 'eslint', 'html', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor' }
 for _, lsp in ipairs(servers) do
   local config = {
     capabilities = capabilities,
@@ -94,6 +90,29 @@ for _, lsp in ipairs(servers) do
 
   if (lsp == "graphql") then
     config.filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'graphql'}
+  end
+
+  if (lsp == "lua_ls") then
+    config.settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'},
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+      },
+    }
   end
 
   nvim_lsp[lsp].setup(config)

@@ -32,20 +32,20 @@ if [ $is_dnd -eq 1 ]; then
   exit 0
 fi
 
-week_day=$(date +"%u")
-hour=$(date +"%H")
+week_day=$((10#$(date +"%u")))
+hour=$((10#$(date +"%H")))
 
 office_hours=$(( week_day < 6 && hour >= 9 && hour < 18))
 
 notifications=""
 
 dock_notifications=$(osascript $CURRENT_DIR/notifications-dock.scpt)
-[[ "$dock_notifications" -gt 0 ]] && notifications="${notifications}  ${dock_notifications}"
+[[ "$dock_notifications" -gt 0 ]] && notifications="${notifications}  ${dock_notifications}"
 [ $office_hours -eq 1 ] &&
   github_notifications=$(gh api notifications -q 'map(select(.unread)) | length')
 [[ "$github_notifications" -gt 0 ]] && notifications="${notifications}  ${github_notifications}"
-email_notifications=$(cat $TMPDIR/himalaya-counter)
-[[ "$email_notifications" -gt 0 ]] && notifications="${notifications}  ${email_notifications}"
+# email_notifications=$(cat $TMPDIR/himalaya-counter)
+# [[ "$email_notifications" -gt 0 ]] && notifications="${notifications}  ${email_notifications}"
 
 output=""
 if [[ ! -z "$notifications" ]]; then

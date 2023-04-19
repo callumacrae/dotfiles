@@ -4,6 +4,14 @@ import Darwin
 import EventKit
 
 let store = EKEventStore()
+store.requestAccess(to: .event, completion: { granted, error in
+    if (!granted) {
+        print("Next event script unable to access calendar")
+        print(error!)
+        exit(1)
+    }
+})
+
 let calendars = store.calendars(for: .event)
 
 let from = Date.init()
@@ -18,7 +26,7 @@ for event in events {
     }
 
     if nextEvent == nil || event.compareStartDate(with: nextEvent!) == ComparisonResult.orderedAscending {
-        let email = event.calendar!.source.title
+        let email = event.calendar!.title
         if event.attendees != nil, let selfAttendee = event.attendees!.first(where: { $0.name == email }) {
             if selfAttendee.participantStatus != .declined {
                 nextEvent = event

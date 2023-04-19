@@ -23,8 +23,7 @@ sudo chsh -s /bin/zsh `whoami`
 
 # Install zsh-nvm
 mkdir "${ZDOTDIR:-$HOME}/.zprezto/contrib"
-git clone git@github.com:lukechilds/zsh-nvm.git "${ZDOTDIR:-$HOME}/.zprezto/contrib"
-echo "switch zsh-nvm to riatre fork: https://github.com/lukechilds/zsh-nvm/pull/76"
+git clone git@github.com:lukechilds/zsh-nvm.git "${ZDOTDIR:-$HOME}/.zprezto/contrib/zsh-nvm"
 
 
 # Set up config files

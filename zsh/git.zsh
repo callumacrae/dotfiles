@@ -56,10 +56,10 @@ g() {
 	fi
 }
 
-alias gp="git push"
-alias gpu="git push -u origin HEAD"
-alias gpf="git push --force-with-lease origin HEAD"
 alias gpr="gh pr create --web"
+alias gp="git push"
+alias gpu="git push -u origin HEAD && gpr"
+alias gpf="git push --force-with-lease origin HEAD"
 
 alias gf="git fetch"
 alias gfm="git pull"

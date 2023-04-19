@@ -8,6 +8,8 @@
 ln -s ${DOTFILES}/misc/jshintrc ~/.jshintrc
 
 if [[ `uname` == 'Darwin' ]]; then
+  brew install --cask BetterTouchTool karabiner-elements alfred
+
 	# Link BetterTouchTools config
 	( cd ~/Library/Application\ Support/ && [ -d BetterTouchTool ] && mv BetterTouchTool{,_old})
 	ln -s ${DOTFILES}/misc/BetterTouchTool ~/Library/Application\ Support/BetterTouchTool
