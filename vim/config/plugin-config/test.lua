@@ -46,6 +46,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end
 })
 
+vim.api.nvim_set_keymap('n', '<leader>ja', "<cmd>TestSuite<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>jf', "<cmd>TestFile<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>jdf', "<cmd>TestFile --debug<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>js', "<cmd>TestNearest<cr>", { silent = true })
@@ -71,7 +72,8 @@ def failures:
   ]]):gsub('\n', ' ')
 
 function _G.jest_quickfix()
-  vim.cmd("cgetexpr system('cat .jest-results | jq --raw-output ''" .. jqScript .. "''')")
+  vim.fn.setqflist({}, ' ', { title = "Jest Errors" })
+  vim.cmd("caddexpr system('cat .jest-results | jq --raw-output ''" .. jqScript .. "''')")
   vim.cmd('copen')
 end
 
