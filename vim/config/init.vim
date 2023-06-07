@@ -39,6 +39,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'phaazon/hop.nvim'
+Plug 'rgroli/other.nvim', {'branch': 'main'}
 
 " Git
 Plug 'airblade/vim-gitgutter'
