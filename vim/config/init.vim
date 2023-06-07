@@ -7,7 +7,7 @@ Plug 'srcery-colors/srcery-vim'
 
 " Code intelligence and highlighting
 Plug 'neovim/nvim-lspconfig'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'sbdchd/neoformat'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'metakirby5/codi.vim'
@@ -72,10 +72,6 @@ endfor
 
 colorscheme srcery
 set termguicolors
-
-" misc
-nnoremap <leader>ve :tabe $MYVIMRC<CR>
-nnoremap <leader>vs :source $MYVIMRC<CR>
 
 " wrap text in console.log
 vmap <leader>l Sfconsole.log<CR>

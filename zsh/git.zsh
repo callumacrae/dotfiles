@@ -69,6 +69,8 @@ alias gfma="git pull --autostash"
 alias gc="git checkout"
 alias grh="git reset --hard HEAD"
 alias groh="git reset --hard origin/HEAD"
+alias grom="git reset --hard origin/main"
+alias grod="git reset --hard origin/dev"
 
 # git checkout with --autostash-like functionality
 gca() {
@@ -117,6 +119,8 @@ alias gr="git rebase"
 alias gri="git rebase --interactive"
 alias grim="gf && gri origin/main"
 alias grm="gf && gr origin/main"
+alias grid="gf && gri origin/dev"
+alias grd="gf && gr origin/dev"
 alias grr="git rebase --continue" # using rr from vim-fugitive vs rc from alias.zsh
 alias grs="git rebase --skip"
 alias gra="git rebase --abort"
@@ -126,3 +130,4 @@ alias glo="git log --pretty='format:%C(auto)%h %s %C(dim)%ad%Creset' --date=rela
 alias gloh="glo | head"
 
 alias gcp="git cherry-pick"
+alias ga="git add"

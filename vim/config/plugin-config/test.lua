@@ -4,6 +4,8 @@ vim.g['test#echo_command'] = 0
 
 vim.g['test#javascript#jest#file_pattern'] = '\\v(__tests__/.*|(spec|test|unit))\\.(js|jsx|ts|tsx)$'
 vim.g['test#javascript#jest#options'] = '--json --outputFile .jest-results --testLocationInResults'
+vim.g['test#javascript#vitest#file_pattern'] = '\\v(__tests__/.*|(spec|test|unit))\\.(js|jsx|ts|tsx)$'
+-- vim.g['test#javascript#vitest#options'] = '--reporter json --outputFile .vitest-results'
 vim.g['test#javascript#playwright#file_pattern'] = '\\v(__tests__/.*|(spec|test|setup))\\.(js|jsx|ts|tsx)$'
 vim.g['test#javascript#playwright#options'] = '--reporter=line'
 
@@ -50,14 +52,15 @@ vim.api.nvim_set_keymap('n', '<leader>ja', "<cmd>TestSuite<cr>", { silent = true
 vim.api.nvim_set_keymap('n', '<leader>jf', "<cmd>TestFile<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>jdf', "<cmd>TestFile --debug<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>js', "<cmd>TestNearest<cr>", { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>jsf', "<cmd>TestNearest --debug<cr>", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jds', "<cmd>TestNearest --debug<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>jc', "<cmd>TestNearest<cr>", { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>jcf', "<cmd>TestNearest --debug<cr>", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jdc', "<cmd>TestNearest --debug<cr>", { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>jl', "<cmd>TestLast<cr>", { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>jld', "<cmd>TestLast --debug<cr>", { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>jjd', "<cmd>TestLast --debug<cr>", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jdl', "<cmd>TestLast --debug<cr>", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jj', "<cmd>TestLast<cr>", { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>jdj', "<cmd>TestLast --debug<cr>", { silent = true })
 
-local jqScript = ([[
+local jestJqScript = ([[
 def failures:
     . as $result
     | .assertionResults
@@ -71,11 +74,23 @@ def failures:
     | "\(.file):\(.location.line // 0):\(.location.column // 0):\(.title)"
   ]]):gsub('\n', ' ')
 
-function _G.jest_quickfix()
-  vim.fn.setqflist({}, ' ', { title = "Jest Errors" })
-  vim.cmd("caddexpr system('cat .jest-results | jq --raw-output ''" .. jqScript .. "''')")
-  vim.cmd('copen')
+local function test_quickfix()
+  local runner = vim.fn['test#determine_runner'](vim.fn.expand('%'))
+
+  if runner == 0 then
+    vim.api.nvim_err_writeln('Error: not a test file')
+  elseif runner == 'javascript#jest' then
+    vim.fn.setqflist({}, ' ', { title = 'Jest Errors' })
+    vim.cmd("caddexpr system('cat .jest-results | jq --raw-output ''" .. jestJqScript .. "''')")
+    vim.cmd('copen')
+  elseif runner == 'javascript#vitest' then
+    vim.fn.setqflist({}, ' ', { title = 'Vitest Errors' })
+    vim.cmd("caddexpr system('cat .vitest-results | jq --raw-output ''" .. jestJqScript .. "''')")
+    vim.cmd('copen')
+  else
+    vim.api.nvim_err_writeln('Error: :JestQf not supported with ' .. runner .. ' runner')
+  end
 end
 
-vim.api.nvim_create_user_command('JestQf', 'call v:lua.jest_quickfix()', {})
-vim.api.nvim_set_keymap('n', '<leader>jq', "<cmd>JestQf<cr>", { silent = true })
+vim.api.nvim_create_user_command('TestQf', test_quickfix, {})
+vim.api.nvim_set_keymap('n', '<leader>jq', "<cmd>TestQf<cr>", { silent = true })
