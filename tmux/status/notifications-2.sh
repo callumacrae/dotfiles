@@ -46,8 +46,8 @@ if [ $office_hours -eq 1 ]; then
   github_notifications=$(gh api notifications -q 'map(select(.unread)) | length')
   [[ "$github_notifications" -gt 0 ]] && notifications="${notifications}  ${github_notifications}"
 
-  notion_notifications=$($CURRENT_DIR/notifications-notion.sh)
-  [[ "$notion_notifications" -gt 0 ]] && notifications="${notifications}  ${notion_notifications}"
+  # notion_notifications=$($CURRENT_DIR/notifications-notion.sh)
+  # [[ "$notion_notifications" -gt 0 ]] && notifications="${notifications}  ${notion_notifications}"
 fi
 
 # email_notifications=$(cat $TMPDIR/himalaya-counter)

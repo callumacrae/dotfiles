@@ -32,7 +32,8 @@ Plug 'hrsh7th/cmp-vsnip' " required for snippets
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/lsp_signature.nvim'
 
-Plug 'github/copilot.vim', {'branch': 'release'}
+Plug 'zbirenbaum/copilot.lua'
+Plug 'zbirenbaum/copilot-cmp'
 
 " Navigation
 Plug 'kyazdani42/nvim-tree.lua'

@@ -9,3 +9,5 @@ alias v=start_nvim
 export EDITOR=nvim
 export VISUAL=nvim
 export GIT_EDITOR=nvim
+
+export PATH="~/go/bin:$PATH"

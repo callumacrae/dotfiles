@@ -93,7 +93,7 @@
 			<key>Tailwind_CSS</key>
 			<dict>
 				<key>date</key>
-				<date>2022-06-20T21:14:30Z</date>
+				<date>2023-11-06T19:25:22Z</date>
 				<key>entry</key>
 				<dict>
 					<key>aliases</key>
@@ -117,7 +117,7 @@
 			<key>Three.js</key>
 			<dict>
 				<key>date</key>
-				<date>2022-11-10T10:38:27Z</date>
+				<date>2023-04-19T22:21:41Z</date>
 				<key>entry</key>
 				<dict>
 					<key>aliases</key>
@@ -159,6 +159,8 @@
 			<string>gl:</string>
 			<key>~/Library/Application Support/Dash/DocSets/TypeScript/TypeScript.docset</key>
 			<string>ts:</string>
+			<key>~/Library/Application Support/Dash/User Contributed/Tailwind CSS/Tailwind_CSS.docset</key>
+			<string>tailwind:</string>
 			<key>~/Library/Application Support/Dash/User Contributed/Tailwind CSS/tailwindcss.docset</key>
 			<string>tailwind:</string>
 			<key>~/Library/Application Support/Dash/User Contributed/Threejs/threejs.docset</key>
@@ -172,67 +174,67 @@
 			<key>http://kapeli.com/feeds/Boost.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-07-20T13:47:04Z</date>
+				<date>2023-04-19T22:22:54Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/C++.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-06-16T17:29:44Z</date>
+				<date>2023-04-19T22:22:37Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/CSS.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-07-02T15:49:11Z</date>
+				<date>2023-04-19T22:22:17Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/HTML.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-07-02T15:49:18Z</date>
+				<date>2023-04-19T22:22:43Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/Ionic.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2022-06-06T11:28:48Z</date>
+				<date>2023-04-19T22:22:25Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/JavaScript.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-07-02T15:50:02Z</date>
+				<date>2023-04-19T22:23:23Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/NodeJS.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-08-13T13:42:59Z</date>
+				<date>2023-04-19T22:22:52Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/OpenCV.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-06-29T19:32:05Z</date>
+				<date>2023-04-19T22:23:19Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/OpenGL_4.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-07-12T14:37:51Z</date>
+				<date>2023-04-19T22:22:47Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/React.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-07-02T15:49:17Z</date>
+				<date>2023-04-19T22:22:49Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/SVG.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-07-02T15:49:24Z</date>
+				<date>2023-04-19T22:22:58Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/TypeScript.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2021-11-08T13:51:36Z</date>
+				<date>2023-04-19T22:23:01Z</date>
 			</dict>
 			<key>http://kapeli.com/feeds/VueJS.xml</key>
 			<dict>
 				<key>date</key>
-				<date>2020-07-02T15:49:14Z</date>
+				<date>2023-04-19T22:23:08Z</date>
 			</dict>
 		</dict>
 		<key>uninstalled</key>

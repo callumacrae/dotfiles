@@ -8,8 +8,12 @@ cmp.setup({
     -- autocomplete = false
   },
   sources = cmp.config.sources({
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'path' },
+  }),
+	mapping = cmp.mapping.preset.insert({
+    -- Your configuration here.
   }),
   snippet = {
     expand = function(args)
@@ -73,7 +77,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'eslint', 'html', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor' }
+local servers = { 'eslint', 'html', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
 for _, lsp in ipairs(servers) do
   local config = {
     capabilities = capabilities,
@@ -113,6 +117,10 @@ for _, lsp in ipairs(servers) do
         },
       },
     }
+  end
+
+  if (lsp == "gopls") then
+    config.cmd = { "/Users/callummacrae/go/bin/gopls" }
   end
 
   nvim_lsp[lsp].setup(config)
