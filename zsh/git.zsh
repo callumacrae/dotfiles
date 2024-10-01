@@ -74,7 +74,10 @@ alias grod="git reset --hard origin/dev"
 
 # git checkout with --autostash-like functionality
 gca() {
-	git stash && git checkout $@ && git stash apply
+	git stash -u && git checkout $@ && git stash apply
+}
+gcad() {
+	gca -b $@ origin/dev
 }
 
 _fzf_complete_gc() {
@@ -100,7 +103,7 @@ _fzf_complete_g_post() {
 	awk '{print $1}'
 }
 
-alias gs="git stash"
+alias gs="git stash -u"
 alias gsa="git stash apply"
 alias gsl="git stash list"
 

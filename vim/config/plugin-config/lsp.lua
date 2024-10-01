@@ -77,7 +77,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'eslint', 'html', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
+local servers = { 'eslint', 'html', 'ts_ls', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
 for _, lsp in ipairs(servers) do
   local config = {
     capabilities = capabilities,
@@ -88,8 +88,24 @@ for _, lsp in ipairs(servers) do
     root_dir = util.root_pattern('.git'), -- package.json not accurate for monorepos
   }
 
-  if (lsp == "volar") then
-    config.filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+  if (lsp == "ts_ls") then
+    local handle = io.popen('npm config get prefix')
+    if (handle == nil) then
+      error('unable to get npm config prefix')
+    end
+    local result = handle:read('*a'):gsub('[\n\r]', '')
+    handle:close()
+
+    config.init_options = {
+      plugins = {
+        {
+          name = '@vue/typescript-plugin',
+          location = result .. '/lib/node_modules/@vue/typescript-plugin',
+          languages = { 'vue' },
+        },
+      },
+    }
+    config.filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
   end
 
   if (lsp == "graphql") then
@@ -120,7 +136,7 @@ for _, lsp in ipairs(servers) do
   end
 
   if (lsp == "gopls") then
-    config.cmd = { "/Users/callummacrae/go/bin/gopls" }
+    config.cmd = { vim.fn.expand('$HOME/go/bin/gopls') }
   end
 
   nvim_lsp[lsp].setup(config)
