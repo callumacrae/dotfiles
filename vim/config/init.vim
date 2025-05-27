@@ -12,6 +12,9 @@ Plug 'sbdchd/neoformat'
 Plug 'sheerun/vim-polyglot'
 Plug 'metakirby5/codi.vim'
 
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
 " Code writing helpers
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'

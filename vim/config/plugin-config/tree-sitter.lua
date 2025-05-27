@@ -1,0 +1,27 @@
+-- require'nvim-treesitter.configs'.setup({
+--   ensure_installed = { "lua", "vim", "vimdoc", "javascript", "typescript", "vue", "css", "scss", "go", "bash" },
+--   sync_install = false,
+--   auto_install = false,
+--   ignore_install = {},
+--
+--   highlight = { enable = true },
+--   indent = { enable = true },
+--
+--   modules = {},
+--
+--   textobjects = {
+--     select = {
+--       enable = true,
+--       lookahead = true,
+--
+--       keymaps = {
+--         ["af"] = "@function.outer",
+--         ["if"] = "@function.inner",
+--         -- ["ax"] = "@attribute.outer", // doesn't work in vue templates
+--         -- ["ix"] = "@attribute.inner",
+--         -- ["a,"] = "@parameter.outer", // doesn't work in vue scripts
+--         -- ["i,"] = "@parameter.inner",
+--       },
+--     },
+--   },
+-- })
