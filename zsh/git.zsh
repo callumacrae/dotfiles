@@ -52,10 +52,11 @@ ghpr() {
 g() {
 	if [ "${#*[@]}" -ne 0 ]
 		then git $@
-		else git status
+		else git status --short
 	fi
 }
 
+alias gs="git status"
 alias gpr="gh pr create --web"
 alias gp="git push"
 alias gpu="git push -u origin HEAD && gpr"
@@ -77,7 +78,7 @@ gca() {
 	git stash -u && git checkout $@ && git stash apply
 }
 gcad() {
-	gca -b $@ origin/dev
+	gf && gca -b $@ origin/dev
 }
 
 _fzf_complete_gc() {
