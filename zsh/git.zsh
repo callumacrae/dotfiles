@@ -56,7 +56,8 @@ g() {
 	fi
 }
 
-alias gs="git status"
+alias gsl="git status --long"
+
 alias gpr="gh pr create --web"
 alias gp="git push"
 alias gpu="git push -u origin HEAD && gpr"
