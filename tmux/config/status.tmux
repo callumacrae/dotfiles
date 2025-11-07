@@ -70,4 +70,4 @@ set -g @batt_icon_status_unknown " "
 set -g @route_to_ping "1.1.1.1"
 set -g @online_icon "#[fg=cyan]"
 set -g @offline_icon "#[fg=red]"
-set -g status-interval 5
+set -g status-interval 20
