@@ -77,7 +77,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'eslint', 'html', 'ts_ls', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
+local servers = { 'eslint', 'oxlint', 'html', 'ts_ls', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
 for _, lsp in ipairs(servers) do
   local config = {
     capabilities = capabilities,
@@ -87,6 +87,19 @@ for _, lsp in ipairs(servers) do
     },
     root_dir = util.root_pattern('.git'), -- package.json not accurate for monorepos
   }
+
+  -- Linters: only attach in projects that actually use them, so they don't
+  -- error in projects configured for the other one.
+  if (lsp == "eslint") then
+    config.root_dir = util.root_pattern('eslint.config.js', 'eslint.config.mjs', 'eslint.config.cjs', 'eslint.config.ts', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', '.eslintrc')
+  end
+
+  if (lsp == "oxlint") then
+    config.root_dir = util.root_pattern('.oxlintrc.json', '.oxlintrc.jsonc', 'oxlint.config.ts')
+    -- Legacy lspconfig still spawns the old `oxc_language_server` binary;
+    -- the current oxlint package ships an `oxlint --lsp` entrypoint instead.
+    config.cmd = { 'oxlint', '--lsp' }
+  end
 
   if (lsp == "ts_ls") then
     local handle = io.popen('npm config get prefix')
