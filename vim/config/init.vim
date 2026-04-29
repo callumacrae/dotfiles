@@ -6,6 +6,11 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'srcery-colors/srcery-vim'
 
 " Code intelligence and highlighting
+" We use the native vim.lsp.config / vim.lsp.enable API (nvim 0.11+), not the
+" deprecated lspconfig framework. nvim-lspconfig is kept for its lsp/<name>.lua
+" per-server defaults, but its plugin/lspconfig.lua auto-attach script is
+" skipped via this guard.
+let g:lspconfig = 1
 Plug 'neovim/nvim-lspconfig'
 Plug 'sbdchd/neoformat'
 
@@ -34,9 +39,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip' " required for snippets
 Plug 'hrsh7th/vim-vsnip'
 Plug 'ray-x/lsp_signature.nvim'
-
-Plug 'zbirenbaum/copilot.lua'
-Plug 'zbirenbaum/copilot-cmp'
 
 " Navigation
 Plug 'kyazdani42/nvim-tree.lua'

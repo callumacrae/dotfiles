@@ -1,6 +1,3 @@
-local configs = require 'lspconfig.configs'
-local util = require 'lspconfig.util'
-local nvim_lsp = require 'lspconfig'
 local cmp = require 'cmp'
 
 cmp.setup({
@@ -8,7 +5,6 @@ cmp.setup({
     -- autocomplete = false
   },
   sources = cmp.config.sources({
-    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'path' },
   }),
@@ -35,122 +31,90 @@ require "lsp_signature".setup({
   hint_enable = true,
 })
 
-if not configs.glsl then
-  configs.glsl = {
-    default_config = {
-      cmd = { 'glslls', '--stdin' },
-      filetypes = { 'glsl' },
-      root_dir = util.root_pattern('.git'),
-      single_file_support = true,
-    },
-  };
-end
-
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setqflist()<CR>', opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local bufnr = ev.buf
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-end
+    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  end,
+})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'eslint', 'oxlint', 'html', 'ts_ls', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
-for _, lsp in ipairs(servers) do
-  local config = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    root_dir = util.root_pattern('.git'), -- package.json not accurate for monorepos
-  }
+-- Shared defaults for every server we enable below.
+vim.lsp.config('*', {
+  capabilities = capabilities,
+  flags = { debounce_text_changes = 150 },
+})
 
-  -- Linters: only attach in projects that actually use them, so they don't
-  -- error in projects configured for the other one.
-  if (lsp == "eslint") then
-    config.root_dir = util.root_pattern('eslint.config.js', 'eslint.config.mjs', 'eslint.config.cjs', 'eslint.config.ts', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.json', '.eslintrc')
-  end
+-- glsl has no built-in nvim-lspconfig entry; declare it inline.
+vim.lsp.config('glsl', {
+  cmd = { 'glslls', '--stdin' },
+  filetypes = { 'glsl' },
+  root_markers = { '.git' },
+})
 
-  if (lsp == "oxlint") then
-    config.root_dir = util.root_pattern('.oxlintrc.json', '.oxlintrc.jsonc', 'oxlint.config.ts')
-    -- Legacy lspconfig still spawns the old `oxc_language_server` binary;
-    -- the current oxlint package ships an `oxlint --lsp` entrypoint instead.
-    config.cmd = { 'oxlint', '--lsp' }
-  end
-
-  if (lsp == "ts_ls") then
-    local handle = io.popen('npm config get prefix')
-    if (handle == nil) then
-      error('unable to get npm config prefix')
-    end
-    local result = handle:read('*a'):gsub('[\n\r]', '')
-    handle:close()
-
-    config.init_options = {
-      plugins = {
-        {
-          name = '@vue/typescript-plugin',
-          location = result .. '/lib/node_modules/@vue/typescript-plugin',
-          languages = { 'vue' },
-        },
-      },
-    }
-    config.filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
-  end
-
-  if (lsp == "graphql") then
-    config.filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'graphql'}
-  end
-
-  if (lsp == "lua_ls") then
-    config.settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
-        },
-      },
-    }
-  end
-
-  if (lsp == "gopls") then
-    config.cmd = { vim.fn.expand('$HOME/go/bin/gopls') }
-  end
-
-  nvim_lsp[lsp].setup(config)
+-- These servers need the .git root for monorepos where package.json isn't accurate.
+-- Linters (eslint, oxlint) are excluded so they keep their upstream root_markers
+-- and only attach in projects that actually configure them.
+local git_root_servers = { 'html', 'ts_ls', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
+for _, name in ipairs(git_root_servers) do
+  vim.lsp.config(name, { root_markers = { '.git' } })
 end
+
+local npm_prefix = vim.fn.system('npm config get prefix'):gsub('[\n\r]', '')
+vim.lsp.config('ts_ls', {
+  init_options = {
+    plugins = {
+      {
+        name = '@vue/typescript-plugin',
+        location = npm_prefix .. '/lib/node_modules/@vue/typescript-plugin',
+        languages = { 'vue' },
+      },
+    },
+  },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+})
+
+vim.lsp.config('graphql', {
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'graphql' },
+})
+
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      diagnostics = { globals = { 'vim' } },
+      workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+      telemetry = { enable = false },
+    },
+  },
+})
+
+vim.lsp.config('gopls', {
+  cmd = { vim.fn.expand('$HOME/go/bin/gopls') },
+})
+
+vim.lsp.enable({
+  'eslint', 'oxlint', 'html', 'ts_ls', 'volar', 'glsl',
+  'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor',
+  'tailwindcss', 'gopls',
+})
