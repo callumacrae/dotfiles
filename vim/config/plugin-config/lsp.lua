@@ -75,7 +75,7 @@ vim.lsp.config('glsl', {
 -- These servers need the .git root for monorepos where package.json isn't accurate.
 -- Linters (eslint, oxlint) are excluded so they keep their upstream root_markers
 -- and only attach in projects that actually configure them.
-local git_root_servers = { 'html', 'ts_ls', 'volar', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
+local git_root_servers = { 'html', 'ts_ls', 'vue_ls', 'glsl', 'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor', 'tailwindcss', 'gopls' }
 for _, name in ipairs(git_root_servers) do
   vim.lsp.config(name, { root_markers = { '.git' } })
 end
@@ -114,7 +114,7 @@ vim.lsp.config('gopls', {
 })
 
 vim.lsp.enable({
-  'eslint', 'oxlint', 'html', 'ts_ls', 'volar', 'glsl',
+  'eslint', 'oxlint', 'html', 'ts_ls', 'vue_ls', 'glsl',
   'lua_ls', 'bashls', 'sourcekit', 'graphql', 'phpactor',
   'tailwindcss', 'gopls',
 })
