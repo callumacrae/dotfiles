@@ -4,7 +4,7 @@ let s:oxfmt = {
   \ 'stdin': 1,
   \ }
 
-for ft in ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'json']
+for ft in ['javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'json']
   let g:neoformat_{ft}_oxfmt = s:oxfmt
   let g:neoformat_enabled_{ft} = ['oxfmt', 'prettier']
 endfor
