@@ -12,20 +12,40 @@ vim.g['test#javascript#playwright#options'] = '--reporter=line'
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { '*/__tests__/*', '*.spec.*', '*_spec.*', '*.test.*', '*.unit.*', '*.setup.*' },
   callback = function()
+    -- Detect whether this project runs its unit tests through vite-plus (`vp`).
+    -- vite-plus wraps vitest but doesn't expose a `vitest` import/package or a
+    -- node_modules/.bin/vitest binary, so vim-test can't auto-detect it and
+    -- falls through to playwright. Treat it as the vitest runner explicitly.
+    local package = nil
+    local packageFile = vim.fn.findfile('package.json', vim.fn.getcwd() .. ';')
+    if packageFile ~= '' then
+      package = vim.fn.json_decode(vim.fn.readfile(packageFile))
+    end
+    local usesVitePlus = package ~= nil
+      and ((package.dependencies and package.dependencies['vite-plus'] ~= nil)
+        or (package.devDependencies and package.devDependencies['vite-plus'] ~= nil))
+
     -- Handle multiple test runners by inspecting file contents
     if vim.fn.search('@playwright\\/test', 'wn') ~= 0 then
       vim.g['test#javascript#runner'] = 'playwright'
     elseif vim.fn.search('\\scy\\.[a-z]', 'wn') ~= 0 then
       vim.g['test#javascript#runner'] = 'cypress'
+    elseif usesVitePlus then
+      vim.g['test#javascript#runner'] = 'vitest'
     else
       vim.g['test#javascript#runner'] = nil
     end
 
-    -- Use npm / yarn commands when available
-    local packageFile = vim.fn.findfile('package.json', vim.fn.getcwd() .. ';')
-    if packageFile ~= '' then
-      local package = vim.fn.json_decode(vim.fn.readfile(packageFile))
+    -- vite-plus runs vitest through its own `vp test` command (resolved on PATH
+    -- by mise inside the project); plain vitest projects use vim-test's default.
+    if usesVitePlus then
+      vim.g['test#javascript#vitest#executable'] = 'vp test'
+    else
+      vim.g['test#javascript#vitest#executable'] = nil
+    end
 
+    -- Use npm / yarn commands when available
+    if package ~= nil then
       local yarnLockFile = vim.fn.findfile('yarn.lock', vim.fn.getcwd() .. ';')
       local yarnOrNpm = yarnLockFile ~= '' and 'yarn' or 'npm'
 
